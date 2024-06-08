@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Domain
 {
-    public class Group : NamedEntity
+    public class Permission : NamedEntity
     {
     }
 }

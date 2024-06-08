@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Domain
 {
-    public class Group : NamedEntity
+    public abstract class NamedEntity : Entity
     {
+        public string Name { get; set; }
     }
 }

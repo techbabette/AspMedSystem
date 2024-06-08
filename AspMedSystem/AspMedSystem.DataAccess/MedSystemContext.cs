@@ -29,5 +29,6 @@ namespace AspMedSystem.DataAccess
         }
 
         public DbSet<Group> Groups { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
     }
 }

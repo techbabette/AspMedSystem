@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspMedSystem", "AspMedSystem\AspMedSystem.csproj", "{7B43C3BA-701C-46D5-B030-B19F5F82CCAC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspMedSystem.Domain", "AspMedSystem.Domain\AspMedSystem.Domain.csproj", "{77730A7B-2794-4F99-AA6F-47176AACEE46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspMedSystem.DataAccess", "AspMedSystem.DataAccess\AspMedSystem.DataAccess.csproj", "{27634820-57B4-498E-87DB-E906FE50ADB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7B43C3BA-701C-46D5-B030-B19F5F82CCAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B43C3BA-701C-46D5-B030-B19F5F82CCAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B43C3BA-701C-46D5-B030-B19F5F82CCAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B43C3BA-701C-46D5-B030-B19F5F82CCAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77730A7B-2794-4F99-AA6F-47176AACEE46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77730A7B-2794-4F99-AA6F-47176AACEE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77730A7B-2794-4F99-AA6F-47176AACEE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77730A7B-2794-4F99-AA6F-47176AACEE46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27634820-57B4-498E-87DB-E906FE50ADB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27634820-57B4-498E-87DB-E906FE50ADB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27634820-57B4-498E-87DB-E906FE50ADB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27634820-57B4-498E-87DB-E906FE50ADB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

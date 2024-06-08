@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Domain
 {
-    public class GroupPermission : PermissionEffect
+    public class UserPermission : PermissionEffect
     {
-        public int GroupId { get; set; }
-        public virtual Group Group { get; set; }
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
     }
 }

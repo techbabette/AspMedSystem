@@ -8,5 +8,6 @@ namespace AspMedSystem.Domain
 {
     public class Permission : NamedEntity
     {
+        public virtual ICollection<GroupPermission> GroupPermissions { get; set; } = new HashSet<GroupPermission>();
     }
 }

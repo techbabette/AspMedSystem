@@ -36,5 +36,9 @@ namespace AspMedSystem.DataAccess
         public DbSet<User> Users { get; set; }
 
         public DbSet<UserPermission> UserPermissions { get; set; }
+
+        public DbSet<ExaminationTerm> ExaminationTerms { get; set; }
+
+        public DbSet<Examination> Examinations { get; set; }
     }
 }

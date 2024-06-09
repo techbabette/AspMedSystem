@@ -15,5 +15,7 @@ namespace AspMedSystem.Domain
         public string Text { get; set; }
 
         public virtual Examination Examination { get; set; }
+
+        public virtual ICollection<UserTreatment> UserTreatments { get; set; } = new HashSet<UserTreatment>();
     }
 }

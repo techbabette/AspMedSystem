@@ -1,4 +1,5 @@
 ﻿using AspMedSystem.Domain;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,15 @@ namespace AspMedSystem.DataAccess.Configurations
     {
         protected override void ConfigureEntity(EntityTypeBuilder<UserPermission> builder)
         {
-            builder.HasOne(userPermission => userPermission.Permission).WithMany(permission => permission.UserPermissions);
+            builder.HasOne(userPermission => userPermission.Permission)
+                   .WithMany(permission => permission.UserPermissions)
+                   .HasForeignKey(userPermission => userPermission.PermissionId)
+                   .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(UserPermission => UserPermission.User).WithMany(user => user.UserPermissions);
+            builder.HasOne(userPermission => userPermission.User)
+                   .WithMany(user => user.UserPermissions)
+                   .HasForeignKey(userPermission => userPermission.UserId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

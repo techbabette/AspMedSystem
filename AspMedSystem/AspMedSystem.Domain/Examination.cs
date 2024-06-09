@@ -10,10 +10,11 @@ namespace AspMedSystem.Domain
     {
         public int ExaminationTermId { get; set; }
 
-        public virtual ExaminationTerm ExaminationTerm { get; set; }
         public int ExamineeId { get; set; }
-        public virtual User Examinee { get; set; }
         public bool Canceled { get; set; }
         public bool Perfomed { get; set; }
+        public virtual ExaminationTerm ExaminationTerm { get; set; }
+        public virtual User Examinee { get; set; }
+        public virtual ICollection<Report> Reports { get; set; } = new HashSet<Report>();
     }
 }

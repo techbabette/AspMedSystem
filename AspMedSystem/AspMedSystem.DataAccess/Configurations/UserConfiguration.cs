@@ -33,6 +33,11 @@ namespace AspMedSystem.DataAccess.Configurations
 
             builder.HasIndex(user => new { user.FirstName, user.LastName, user.Email, })
                    .IncludeProperties(user => new { user.BirthDate });
+
+            builder.HasOne(user => user.Group)
+                   .WithMany(group => group.Users)
+                   .HasForeignKey(user => user.GroupId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

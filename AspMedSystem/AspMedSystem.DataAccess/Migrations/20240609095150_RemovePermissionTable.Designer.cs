@@ -4,6 +4,7 @@ using AspMedSystem.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspMedSystem.DataAccess.Migrations
 {
     [DbContext(typeof(MedSystemContext))]
-    partial class MedSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20240609095150_RemovePermissionTable")]
+    partial class RemovePermissionTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,34 +193,6 @@ namespace AspMedSystem.DataAccess.Migrations
                     b.ToTable("Treatment");
                 });
 
-            modelBuilder.Entity("AspMedSystem.Domain.TreatmentCounterindication", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CounterIndicatedTreatmentId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
-
-                    b.Property<int>("TreatmentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CounterIndicatedTreatmentId");
-
-                    b.HasIndex("TreatmentId");
-
-                    b.ToTable("TreatmentCounterindications");
-                });
-
             modelBuilder.Entity("AspMedSystem.Domain.User", b =>
                 {
                     b.Property<int>("Id")
@@ -354,25 +329,6 @@ namespace AspMedSystem.DataAccess.Migrations
                     b.Navigation("Examination");
                 });
 
-            modelBuilder.Entity("AspMedSystem.Domain.TreatmentCounterindication", b =>
-                {
-                    b.HasOne("AspMedSystem.Domain.Treatment", "CounterIndicatedTreatment")
-                        .WithMany("CounterIndicates")
-                        .HasForeignKey("CounterIndicatedTreatmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("AspMedSystem.Domain.Treatment", "Treatment")
-                        .WithMany("CounterIndicatedBy")
-                        .HasForeignKey("TreatmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("CounterIndicatedTreatment");
-
-                    b.Navigation("Treatment");
-                });
-
             modelBuilder.Entity("AspMedSystem.Domain.User", b =>
                 {
                     b.HasOne("AspMedSystem.Domain.Group", "Group")
@@ -410,13 +366,6 @@ namespace AspMedSystem.DataAccess.Migrations
                     b.Navigation("GroupPermissions");
 
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("AspMedSystem.Domain.Treatment", b =>
-                {
-                    b.Navigation("CounterIndicatedBy");
-
-                    b.Navigation("CounterIndicates");
                 });
 
             modelBuilder.Entity("AspMedSystem.Domain.User", b =>

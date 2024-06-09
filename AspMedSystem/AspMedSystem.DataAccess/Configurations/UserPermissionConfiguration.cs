@@ -13,10 +13,9 @@ namespace AspMedSystem.DataAccess.Configurations
     {
         protected override void ConfigureEntity(EntityTypeBuilder<UserPermission> builder)
         {
-            builder.HasOne(userPermission => userPermission.Permission)
-                   .WithMany(permission => permission.UserPermissions)
-                   .HasForeignKey(userPermission => userPermission.PermissionId)
-                   .OnDelete(DeleteBehavior.Restrict);
+            builder.Property(userPermission => userPermission.Permission)
+                   .IsRequired()
+                   .HasMaxLength(50);
 
             builder.HasOne(userPermission => userPermission.User)
                    .WithMany(user => user.UserPermissions)

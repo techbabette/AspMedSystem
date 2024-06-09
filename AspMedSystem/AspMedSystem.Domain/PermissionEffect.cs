@@ -8,9 +8,7 @@ namespace AspMedSystem.Domain
 {
     public abstract class PermissionEffect : Entity
     {
-        public int PermissionId { get; set; }
-
-        public virtual Permission Permission { get; set; }
+        public string Permission { get; set; }
         public bool Effect { get; set; }
     }
 }

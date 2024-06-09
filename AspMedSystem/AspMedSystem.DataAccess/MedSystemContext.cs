@@ -29,18 +29,13 @@ namespace AspMedSystem.DataAccess
         }
 
         public DbSet<Group> Groups { get; set; }
-        public DbSet<Permission> Permissions { get; set; }
-
         public DbSet<GroupPermission> GroupPermissions { get; set; }
-
         public DbSet<User> Users { get; set; }
-
         public DbSet<UserPermission> UserPermissions { get; set; }
-
         public DbSet<ExaminationTerm> ExaminationTerms { get; set; }
-
         public DbSet<Examination> Examinations { get; set; }
-
         public DbSet<Report> Reports { get; set; }
+
+        public DbSet<TreatmentCounterindication> TreatmentCounterindications { get; set;}
     }
 }

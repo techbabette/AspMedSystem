@@ -8,5 +8,7 @@ namespace AspMedSystem.Domain
 {
     public class Treatment : NamedEntity
     {
+        public virtual ICollection<TreatmentCounterindication> CounterIndicatedBy { get; set; } = new HashSet<TreatmentCounterindication>();
+        public virtual ICollection<TreatmentCounterindication> CounterIndicates { get; set; } = new HashSet<TreatmentCounterindication>();
     }
 }

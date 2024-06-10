@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspMedSystem.Domain", "AspMedSystem.Domain\AspMedSystem.Domain.csproj", "{77730A7B-2794-4F99-AA6F-47176AACEE46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspMedSystem.Domain", "AspMedSystem.Domain\AspMedSystem.Domain.csproj", "{77730A7B-2794-4F99-AA6F-47176AACEE46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspMedSystem.DataAccess", "AspMedSystem.DataAccess\AspMedSystem.DataAccess.csproj", "{27634820-57B4-498E-87DB-E906FE50ADB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspMedSystem.DataAccess", "AspMedSystem.DataAccess\AspMedSystem.DataAccess.csproj", "{27634820-57B4-498E-87DB-E906FE50ADB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspMedSystem.Implementation", "AspMedSystem.Implementation\AspMedSystem.Implementation.csproj", "{F5B2DDF8-1B71-4F4B-A314-9712DB81F69F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspMedSystem.Application", "AspMedSystem.Application\AspMedSystem.Application.csproj", "{8B57A6AA-0E38-4482-87F3-396F18A9A197}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspMedSystem.API", "AspMedSystem.API\AspMedSystem.API.csproj", "{51A38065-DFC2-4F0E-B793-D48FC3B547C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{27634820-57B4-498E-87DB-E906FE50ADB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27634820-57B4-498E-87DB-E906FE50ADB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27634820-57B4-498E-87DB-E906FE50ADB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5B2DDF8-1B71-4F4B-A314-9712DB81F69F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5B2DDF8-1B71-4F4B-A314-9712DB81F69F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5B2DDF8-1B71-4F4B-A314-9712DB81F69F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5B2DDF8-1B71-4F4B-A314-9712DB81F69F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B57A6AA-0E38-4482-87F3-396F18A9A197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B57A6AA-0E38-4482-87F3-396F18A9A197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B57A6AA-0E38-4482-87F3-396F18A9A197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B57A6AA-0E38-4482-87F3-396F18A9A197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51A38065-DFC2-4F0E-B793-D48FC3B547C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51A38065-DFC2-4F0E-B793-D48FC3B547C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51A38065-DFC2-4F0E-B793-D48FC3B547C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51A38065-DFC2-4F0E-B793-D48FC3B547C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

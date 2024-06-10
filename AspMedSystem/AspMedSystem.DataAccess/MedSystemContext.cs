@@ -37,5 +37,7 @@ namespace AspMedSystem.DataAccess
         public DbSet<Report> Reports { get; set; }
         public DbSet<TreatmentCounterindication> TreatmentCounterindications { get; set;}
         public DbSet<UserTreatment> UserTreatments { get; set; }
+
+        public DbSet<UseCaseLog> UseCaseLogs { get; set; }
     }
 }

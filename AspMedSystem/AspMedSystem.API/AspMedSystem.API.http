@@ -1,0 +1,6 @@
+@AspMedSystem.API_HostAddress = http://localhost:5293
+
+GET {{AspMedSystem.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -14,4 +14,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AspMedSystem.Application\AspMedSystem.Application.csproj" />
+    <ProjectReference Include="..\AspMedSystem.DataAccess\AspMedSystem.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>

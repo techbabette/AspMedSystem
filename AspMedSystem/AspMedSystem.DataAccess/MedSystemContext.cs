@@ -39,5 +39,7 @@ namespace AspMedSystem.DataAccess
         public DbSet<UserTreatment> UserTreatments { get; set; }
 
         public DbSet<UseCaseLog> UseCaseLogs { get; set; }
+
+        public DbSet<ErrorLog> ErrorLogs { get; set; }
     }
 }

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Domain
 {
-    public class UseCaseLog : Entity
+    public class ErrorLog
     {
-        public string UseCaseName { get; set; }
-
-        public string ActorEmail { get; set; }
-        public string Data { get; set; }
+        public Guid ErrorId { get; set; }
+        public string Message { get; set; }
+        public string StrackTrace { get; set; }
+        public DateTime Time { get; set; }
     }
 }

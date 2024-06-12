@@ -17,7 +17,7 @@ namespace AspMedSystem.Implementation.Logging.UseCases
             _context.UseCaseLogs.Add(new Domain.UseCaseLog
             {
                 Data = JsonConvert.SerializeObject(log.UseCaseData),
-                ActorEmail = log.ActorEmail,
+                ActorEmail = log.UserEmail,
                 UseCaseName = log.UseCaseName
             });
         }

@@ -16,6 +16,12 @@ namespace AspMedSystem.DataAccess
         {
             _connectionString = "Server=localhost\\SQLEXPRESS;Database=AspMedSystem;Trusted_Connection=True;TrustServerCertificate=true";
         }
+
+        public MedSystemContext(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(_connectionString);

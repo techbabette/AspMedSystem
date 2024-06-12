@@ -38,6 +38,7 @@ namespace AspMedSystem.API.Core
                 FirstName = claims.First(x => x.Type == "FirstName").Value,
                 LastName = claims.First(x => x.Type == "LastName").Value,
                 Id = int.Parse(claims.First(x => x.Type == "Id").Value),
+                BirthDate = DateTime.Parse(claims.First(x => x.Type == "BirthDate").Value),
                 AllowedUseCases = JsonConvert.DeserializeObject<List<string>>(claims.First(x => x.Type == "AllowedUseCases").Value)
             };
 

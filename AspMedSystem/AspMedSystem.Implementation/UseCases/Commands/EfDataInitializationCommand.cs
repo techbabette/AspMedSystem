@@ -10,14 +10,16 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Implementation.UseCases.Commands
 {
-    public class EfDataInitialization : EfUseCase, IDataInitialization
+    public class EfDataInitializationCommand : EfUseCase, IDataInitialization
     {
         public string Name => "Data Initialization";
 
-        public EfDataInitialization(MedSystemContext context) : base(context)
+        public EfDataInitializationCommand(MedSystemContext context) : base(context)
         {
             
         }
+
+        internal EfDataInitializationCommand() { }
 
         public void Execute(bool data)
         {

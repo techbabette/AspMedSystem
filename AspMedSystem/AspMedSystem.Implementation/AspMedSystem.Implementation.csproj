@@ -9,10 +9,10 @@
   <ItemGroup>
     <ProjectReference Include="..\AspMedSystem.Application\AspMedSystem.Application.csproj" />
     <ProjectReference Include="..\AspMedSystem.DataAccess\AspMedSystem.DataAccess.csproj" />
+    <ProjectReference Include="..\AspMedSystem.Domain\AspMedSystem.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Commands\" />
     <Folder Include="UseCases\Queries\" />
   </ItemGroup>
 

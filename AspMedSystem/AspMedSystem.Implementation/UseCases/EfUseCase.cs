@@ -16,6 +16,11 @@ namespace AspMedSystem.Implementation.UseCases
             _context = context;
         }
 
+        protected EfUseCase()
+        {
+            
+        }
+
         protected MedSystemContext Context => _context;
     }
 }

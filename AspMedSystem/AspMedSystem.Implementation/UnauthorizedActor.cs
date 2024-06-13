@@ -11,8 +11,6 @@ namespace AspMedSystem.Implementation
     {
         public int Id => 0;
 
-        public string Username => "unauthorized";
-
         public string Email => "/";
 
         public string FirstName => "unauthorized";

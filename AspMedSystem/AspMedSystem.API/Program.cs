@@ -4,8 +4,11 @@ using AspMedSystem.API.Extensions;
 using AspMedSystem.Application;
 using AspMedSystem.DataAccess;
 using AspMedSystem.Implementation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
 using System.Data;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +53,28 @@ builder.Services.AddTransient(x =>
     }
 
     return x.GetService<IApplicationActorProvider>().GetActor();
+});
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(cfg =>
+{
+    cfg.RequireHttpsMetadata = false;
+    cfg.SaveToken = true;
+    cfg.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = settings.JWTSettings.Issuer,
+        ValidateIssuer = true,
+        ValidAudience = "Any",
+        ValidateAudience = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.JWTSettings.SecretKey)),
+        ValidateIssuerSigningKey = true,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero
+    };
 });
 
 var app = builder.Build();

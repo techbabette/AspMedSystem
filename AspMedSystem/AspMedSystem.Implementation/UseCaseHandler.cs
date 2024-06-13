@@ -13,10 +13,16 @@ namespace AspMedSystem.Implementation
     {
         private readonly IApplicationActor _actor;
         private readonly IUseCaseLogger _logger;
+
+        private readonly IEnumerable<string> AlwaysAllowed;
         public UseCaseHandler(IApplicationActor actor, IUseCaseLogger logger)
         {
             _actor = actor;
             _logger = logger;
+            AlwaysAllowed = new List<string>()
+            {
+                "Data Initialization"
+            };
         }
         public void HandleCommand<TData>(ICommand<TData> command, TData data)
         {
@@ -50,7 +56,7 @@ namespace AspMedSystem.Implementation
 
         private void HandleCrossCuttingConcerns(IUseCase useCase, object data)
         {
-            if (!_actor.AllowedUseCases.Contains(useCase.Name))
+            if (!_actor.AllowedUseCases.Contains(useCase.Name) && !AlwaysAllowed.Contains(useCase.Name))
             {
                 throw new UnauthorizedAccessException();
             }

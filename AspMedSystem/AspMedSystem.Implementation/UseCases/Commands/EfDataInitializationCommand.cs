@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Implementation.UseCases.Commands
 {
-    public class EfDataInitializationCommand : EfUseCase, IDataInitialization
+    public class EfDataInitializationCommand : EfUseCase, IDataInitializationCommand
     {
         public string Name => "Data Initialization";
 
@@ -72,6 +72,8 @@ namespace AspMedSystem.Implementation.UseCases.Commands
             Context.Groups.Add(Scheduler);
             Context.Groups.Add(Doctor);
             Context.Groups.Add(Admin);
+
+            Context.SaveChanges();
         }
     }
 }

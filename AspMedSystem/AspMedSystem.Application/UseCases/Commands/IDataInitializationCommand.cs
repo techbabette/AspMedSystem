@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Application.UseCases.Commands
 {
-    public interface IDataInitialization : ICommand<bool>
+    public interface IDataInitializationCommand : ICommand<bool>
     {
 
     }

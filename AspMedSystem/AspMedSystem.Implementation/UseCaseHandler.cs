@@ -21,7 +21,8 @@ namespace AspMedSystem.Implementation
             _logger = logger;
             AlwaysAllowed = new List<string>()
             {
-                "Data Initialization"
+                "Data Initialization",
+                "Register"
             };
         }
         public void HandleCommand<TData>(ICommand<TData> command, TData data)

@@ -3,6 +3,7 @@ using AspMedSystem.Application.UseCases.Commands;
 using AspMedSystem.Implementation;
 using AspMedSystem.Implementation.Logging.UseCases;
 using AspMedSystem.Implementation.UseCases.Commands;
+using AspMedSystem.Implementation.Validators;
 
 namespace AspMedSystem.API.Extensions
 {
@@ -14,6 +15,9 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<UseCaseHandler>();
 
             services.AddTransient<IDataInitializationCommand, EfDataInitializationCommand>();
+
+            services.AddTransient<AuthRegisterValidator>();
+            services.AddTransient<IAuthRegisterCommand,  EfAuthRegisterCommand>();
         }
     }
 }

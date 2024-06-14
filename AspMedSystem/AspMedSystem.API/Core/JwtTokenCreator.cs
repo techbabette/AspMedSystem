@@ -1,4 +1,6 @@
 ﻿using AspMedSystem.DataAccess;
+using AspMedSystem.Domain;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
@@ -20,22 +22,26 @@ namespace AspMedSystem.API.Core
 
         public string Create(string email, string password)
         {
-            var user = _context.Users.Where(x => x.Email == email).Select(x => new
+            var foundUser = _context.Users.Where(user => user.Email == email).Select(user => new
             {
-                x.BirthDate,
-                x.Email,
-                x.Password,
-                x.FirstName,
-                x.LastName,
-                x.Id
-            }).FirstOrDefault();
+                user.BirthDate,
+                user.Email,
+                user.Password,
+                user.FirstName,
+                user.LastName,
+                user.Id,
+                UserAllows = user.UserPermissions.Where(permission => permission.Effect == true).Select(permission => permission.Permission),
+                GroupAllows = user.Group.GroupPermissions.Where(permission => permission.Effect == true).Select(permission => permission.Permission),
+                UserForbids = user.UserPermissions.Where(permission => permission.Effect == false).Select(permission => permission.Permission),
+            })
+            .FirstOrDefault();
 
-            if (user == null)
+            if (foundUser == null)
             {
                 throw new UnauthorizedAccessException();
             }
 
-            if (!BCrypt.Net.BCrypt.Verify(password, user.Password))
+            if (!BCrypt.Net.BCrypt.Verify(password, foundUser.Password))
             {
                 throw new UnauthorizedAccessException();
             }
@@ -44,16 +50,25 @@ namespace AspMedSystem.API.Core
 
             string tokenId = tokenGuid.ToString();
 
+            IEnumerable<string> AllowedUseCases =
+            [
+                ..foundUser.UserAllows,
+                ..foundUser.GroupAllows
+            ];
+
+            AllowedUseCases = AllowedUseCases.Except(foundUser.UserForbids).Distinct();
+
             var claims = new List<Claim>
             {
                  new Claim(JwtRegisteredClaimNames.Jti, tokenId, ClaimValueTypes.String),
                  new Claim(JwtRegisteredClaimNames.Iss, _settings.Issuer, ClaimValueTypes.String),
                  new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
-                 new Claim("BirthDate", user.BirthDate.ToString()),
-                 new Claim("FirstName", user.FirstName),
-                 new Claim("LastName", user.LastName),
-                 new Claim("Email", user.Email),
-                 new Claim("Id", user.Id.ToString()),
+                 new Claim("BirthDate", foundUser.BirthDate.ToString()),
+                 new Claim("FirstName", foundUser.FirstName),
+                 new Claim("LastName", foundUser.LastName),
+                 new Claim("Email", foundUser.Email),
+                 new Claim("Id", foundUser.Id.ToString()),
+                 new Claim("AllowedUseCases", JsonConvert.SerializeObject(AllowedUseCases)),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.SecretKey));

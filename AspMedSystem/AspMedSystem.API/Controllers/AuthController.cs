@@ -1,7 +1,10 @@
-﻿using AspMedSystem.Application.DTO;
+﻿using AspMedSystem.API.Core;
+using AspMedSystem.API.DTO;
+using AspMedSystem.Application.DTO;
 using AspMedSystem.Application.UseCases.Commands;
 using AspMedSystem.DataAccess;
 using AspMedSystem.Implementation;
+using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,9 +17,11 @@ namespace AspMedSystem.API.Controllers
     public class AuthController : ControllerBase
     {
         private UseCaseHandler _useCaseHandler;
-        public AuthController(UseCaseHandler handler)
+        private readonly JwtTokenCreator _tokenCreator;
+        public AuthController(UseCaseHandler handler, JwtTokenCreator tokenCreator)
         {
             _useCaseHandler = handler;
+            _tokenCreator = tokenCreator;
         }
 
         // POST api/<AuthController>
@@ -27,10 +32,12 @@ namespace AspMedSystem.API.Controllers
             return StatusCode(201);
         }
 
-        // DELETE api/<AuthController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPost("login")]
+        public IActionResult Post([FromBody] AuthLoginRequest request)
         {
+            string token = _tokenCreator.Create(request.Email, request.Password);
+
+            return Ok(new AuthResponse { Token = token });
         }
     }
 }

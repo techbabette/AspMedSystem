@@ -1,4 +1,5 @@
-﻿using AspMedSystem.Application;
+﻿using AspMedSystem.API.Core;
+using AspMedSystem.Application;
 using AspMedSystem.Application.UseCases.Commands;
 using AspMedSystem.Implementation;
 using AspMedSystem.Implementation.Logging.UseCases;
@@ -13,6 +14,7 @@ namespace AspMedSystem.API.Extensions
         {
             services.AddTransient<IUseCaseLogger, DbUseCaseLogger>();
             services.AddTransient<UseCaseHandler>();
+            services.AddTransient<JwtTokenCreator>();
 
             services.AddTransient<IDataInitializationCommand, EfDataInitializationCommand>();
 

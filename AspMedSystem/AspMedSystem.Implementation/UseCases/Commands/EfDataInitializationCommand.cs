@@ -19,7 +19,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands
             
         }
 
-        internal EfDataInitializationCommand() { }
+        private EfDataInitializationCommand() { }
 
         public void Execute(bool data)
         {

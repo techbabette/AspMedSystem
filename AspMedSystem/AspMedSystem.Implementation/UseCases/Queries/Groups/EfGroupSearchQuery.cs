@@ -29,13 +29,19 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Groups
         {
             var query = Context.Groups.AsQueryable();
 
-            if (!string.IsNullOrEmpty(search.Keyword))
+            if (!string.IsNullOrEmpty(search.Name))
             {
-                query = query.Where(group => group.Name.Contains(search.Keyword));
+                query = query.Where(group => group.Name.Contains(search.Name));
+            }
+
+            if (search.DefaultRegister.HasValue)
+            {
+                query = query.Where(group => group.DefaultRegister.Equals(search.DefaultRegister.Value));
             }
 
             return query.AsPagedResponse(search, group => new GroupSearchResultDTO
             {
+                Id = group.Id,
                 Name = group.Name,
                 NumberOfUsers = group.Users.Count,
                 NumberOfPermissionSets = group.GroupPermissions.Count,

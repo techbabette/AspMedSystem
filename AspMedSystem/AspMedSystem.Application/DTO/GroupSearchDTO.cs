@@ -8,11 +8,13 @@ namespace AspMedSystem.Application.DTO
 {
     public class GroupSearchDTO : PagedSearch
     {
-        public string? Keyword { get; set; }
+        public string? Name { get; set; }
+        public bool? DefaultRegister { get; set; }
     }
 
     public class GroupSearchResultDTO
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool DefaultRegister { get; set; }

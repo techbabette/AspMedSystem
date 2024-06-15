@@ -31,6 +31,7 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IGroupCreateCommand, EfGroupCreateCommand>();
 
             services.AddTransient<IGroupSearchQuery, EfGroupSearchQuery>();
+            services.AddTransient<IGroupSearchSingleQuery, EfGroupSearchSingleQuery>();
         }
     }
 }

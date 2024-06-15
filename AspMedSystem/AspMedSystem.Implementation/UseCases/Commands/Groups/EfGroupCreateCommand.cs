@@ -28,13 +28,13 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Groups
         {
             _validator.ValidateAndThrow(data);
 
-            var allowed = data.AllowedUseCases.Select(useCase => new GroupPermission
+            var allowed = data.AllowedUseCases.Distinct().Select(useCase => new GroupPermission
             {
                 Permission = useCase,
                 Effect = Effect.Allow
             });
 
-            var disallowed = data.DisallowedUseCases.Select(useCase => new GroupPermission
+            var disallowed = data.DisallowedUseCases.Distinct().Select(useCase => new GroupPermission
             {
                 Permission = useCase,
                 Effect = Effect.Disallow

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AspMedSystem.Implementation.UseCases.Commands.Users
+namespace AspMedSystem.Implementation.UseCases.Queries.Users
 {
     public class EfUserSearchSelfPermissionsQuery : EfUseCase, IUserSearchSelfPermissionsQuery
     {

@@ -3,6 +3,7 @@ using AspMedSystem.Application;
 using AspMedSystem.Application.UseCases.Commands;
 using AspMedSystem.Application.UseCases.Commands.Auth;
 using AspMedSystem.Application.UseCases.Commands.Groups;
+using AspMedSystem.Application.UseCases.Commands.Users;
 using AspMedSystem.Application.UseCases.Queries.Groups;
 using AspMedSystem.Application.UseCases.Queries.Users;
 using AspMedSystem.Implementation;
@@ -12,6 +13,7 @@ using AspMedSystem.Implementation.UseCases.Commands.Auth;
 using AspMedSystem.Implementation.UseCases.Commands.Groups;
 using AspMedSystem.Implementation.UseCases.Commands.Users;
 using AspMedSystem.Implementation.UseCases.Queries.Groups;
+using AspMedSystem.Implementation.UseCases.Queries.Users;
 using AspMedSystem.Implementation.Validators;
 
 namespace AspMedSystem.API.Extensions
@@ -44,6 +46,11 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IUserSearchSinglePermissionsQuery, EfUserSearchSinglePermissionsQuery>();
             services.AddTransient<IUserSearchSelfInformationQuery, EfUserSearchSelfInformationQuery>();
             services.AddTransient<IUserSearchSelfPermissionsQuery, EfUserSearchSelfPermissionsQuery>();
+            services.AddTransient<IUserSearchQuery, EfUserSearchQuery>();
+
+            services.AddTransient<UserUpdateInformationValidator>();
+            services.AddTransient<IUserUpdateInformationSelfCommand, EfUserUpdateInformationSelfCommand>();
+            services.AddTransient<IUserUpdateInformationOthersCommand, EfUserUpdateInformationOthersCommand>();
         }
     }
 }

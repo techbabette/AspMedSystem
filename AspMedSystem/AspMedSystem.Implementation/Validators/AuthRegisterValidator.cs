@@ -23,11 +23,15 @@ namespace AspMedSystem.Implementation.Validators
 
             RuleFor(dto => dto.FirstName)
                 .NotEmpty()
-                .MinimumLength(2);
+                .MinimumLength(2)
+                .MaximumLength(50)
+                .WithMessage("First name should be between two and fifty characters long");
 
             RuleFor(dto => dto.LastName)
                 .NotEmpty()
-                .MinimumLength(2);
+                .MinimumLength(2)
+                .MaximumLength(50)
+                .WithMessage("Last name should be between two and fifty characters long");
 
             RuleFor(dto => dto.Password)
                 .NotEmpty()

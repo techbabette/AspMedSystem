@@ -1,4 +1,6 @@
-﻿using AspMedSystem.Application.UseCases.Queries.Users;
+﻿using AspMedSystem.Application.DTO;
+using AspMedSystem.Application.UseCases.Commands.Users;
+using AspMedSystem.Application.UseCases.Queries.Users;
 using AspMedSystem.Implementation;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +20,9 @@ namespace AspMedSystem.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromServices] IUserSearchQuery query, [FromQuery] UserSearchDTO search)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_handler.HandleQuery(query, search));
         }
 
         [HttpGet("me/information")]
@@ -47,16 +49,20 @@ namespace AspMedSystem.API.Controllers
             return Ok(_handler.HandleQuery(query, id));
         }
 
-        // POST api/<UsersController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPut("me/information")]
+        public IActionResult PutSelfInformation([FromBody] UserUpdateInformationDTO dto, [FromServices] IUserUpdateInformationSelfCommand command)
         {
+            _handler.HandleCommand(command, dto);
+            return StatusCode(204);
         }
 
         // PUT api/<UsersController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{id}/information")]
+        public IActionResult PutOthersInformation(int id, [FromBody] UserUpdateInformationDTO dto, [FromServices] IUserUpdateInformationOthersCommand command)
         {
+            dto.Id = id;
+            _handler.HandleCommand(command, dto);
+            return StatusCode(204);
         }
 
         // DELETE api/<UsersController>/5

@@ -1,31 +1,33 @@
-﻿using AspMedSystem.Application.DTO;
+﻿using AspMedSystem.Application;
+using AspMedSystem.Application.DTO;
 using AspMedSystem.Application.Exceptions;
 using AspMedSystem.Application.UseCases.Queries.Users;
 using AspMedSystem.DataAccess;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AspMedSystem.Implementation.UseCases.Commands.Users
+namespace AspMedSystem.Implementation.UseCases.Queries.Users
 {
-    public class EfUserSearchSingleInformationQuery : EfUseCase, IUserSearchSingleInformationQuery
+    public class EfUserSearchSelfInformationQuery : EfUseCase, IUserSearchSelfInformationQuery
     {
-        private EfUserSearchSingleInformationQuery()
+        IApplicationActor _actor;
+        private EfUserSearchSelfInformationQuery()
         {
         }
 
-        public EfUserSearchSingleInformationQuery(MedSystemContext context) : base(context)
+        public EfUserSearchSelfInformationQuery(MedSystemContext context, IApplicationActor actor) : base(context)
         {
+            _actor = actor;
         }
 
-        public string Name => "Show information about other user";
+        public string Name => "Show your own information";
 
-        public UserSearchSingleInformationDTO Execute(int search)
+        public UserSearchSingleInformationDTO Execute(bool search)
         {
-            var user = Context.Users.Where(user => user.Id == search)
+            var user = Context.Users.Where(user => user.Id == _actor.Id)
                                     .Select(user => new UserSearchSingleInformationDTO()
                                     {
                                         Email = user.Email,
@@ -37,9 +39,9 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Users
                                     })
                                     .FirstOrDefault();
 
-            if(user == null)
+            if (user == null)
             {
-                throw new EntityNotFoundException("User", search);
+                throw new EntityNotFoundException("User", _actor.Id);
             }
 
             return user;

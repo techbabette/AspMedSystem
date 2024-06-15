@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AspMedSystem.Implementation.UseCases.Commands.Users
+namespace AspMedSystem.Implementation.UseCases.Queries.Users
 {
     public class EfUserSearchSinglePermissionsQuery : EfUseCase, IUserSearchSinglePermissionsQuery
     {
@@ -44,7 +44,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Users
                                     })
                                     .FirstOrDefault();
 
-            if(user == null)
+            if (user == null)
             {
                 throw new EntityNotFoundException("User", search);
             }

@@ -1,33 +1,31 @@
-﻿using AspMedSystem.Application;
-using AspMedSystem.Application.DTO;
+﻿using AspMedSystem.Application.DTO;
 using AspMedSystem.Application.Exceptions;
 using AspMedSystem.Application.UseCases.Queries.Users;
 using AspMedSystem.DataAccess;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AspMedSystem.Implementation.UseCases.Commands.Users
+namespace AspMedSystem.Implementation.UseCases.Queries.Users
 {
-    public class EfUserSearchSelfInformationQuery : EfUseCase, IUserSearchSelfInformationQuery
+    public class EfUserSearchSingleInformationQuery : EfUseCase, IUserSearchSingleInformationQuery
     {
-        IApplicationActor _actor;
-        private EfUserSearchSelfInformationQuery()
+        private EfUserSearchSingleInformationQuery()
         {
         }
 
-        public EfUserSearchSelfInformationQuery(MedSystemContext context, IApplicationActor actor) : base(context)
+        public EfUserSearchSingleInformationQuery(MedSystemContext context) : base(context)
         {
-            _actor = actor;
         }
 
-        public string Name => "Show your own information";
+        public string Name => "Show information about other user";
 
-        public UserSearchSingleInformationDTO Execute(bool search)
+        public UserSearchSingleInformationDTO Execute(int search)
         {
-            var user = Context.Users.Where(user => user.Id == _actor.Id)
+            var user = Context.Users.Where(user => user.Id == search)
                                     .Select(user => new UserSearchSingleInformationDTO()
                                     {
                                         Email = user.Email,
@@ -41,7 +39,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Users
 
             if (user == null)
             {
-                throw new EntityNotFoundException("User", _actor.Id);
+                throw new EntityNotFoundException("User", search);
             }
 
             return user;

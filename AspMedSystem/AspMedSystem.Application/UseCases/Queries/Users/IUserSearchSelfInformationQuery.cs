@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AspMedSystem.Application.UseCases.Commands.Users
+namespace AspMedSystem.Application.UseCases.Queries.Users
 {
-    public interface IUserSearchSingleQuery : IQuery<UserSearchSingleDTO, int>
+    public interface IUserSearchSelfInformationQuery : IQuery<UserSearchSingleInformationDTO, bool>
     {
     }
 }

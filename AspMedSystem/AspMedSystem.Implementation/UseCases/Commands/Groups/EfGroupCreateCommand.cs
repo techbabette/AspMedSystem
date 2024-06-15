@@ -36,17 +36,9 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Groups
                 Effect = Effect.Allow
             });
 
-            var disallowed = data.DisallowedUseCases.Distinct().Select(useCase => new GroupPermission
-            {
-                Permission = useCase.ToLower(),
-                Effect = Effect.Disallow
-            });
-
             var permissions = new List<GroupPermission>();
 
             permissions.AddRange(allowed);
-            permissions.AddRange(disallowed);
-
 
             Group newGroup = new Group
             {

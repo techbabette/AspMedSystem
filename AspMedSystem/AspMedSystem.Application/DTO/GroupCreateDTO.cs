@@ -11,6 +11,5 @@ namespace AspMedSystem.Application.DTO
         public bool? DefaultRegister { get; set; } = false;
         public string Name { get; set; }
         public IEnumerable<string> AllowedUseCases { get; set; }
-        public IEnumerable<string> DisallowedUseCases { get; set; }
     }
 }

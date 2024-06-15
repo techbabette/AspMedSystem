@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Application.DTO
 {
-    public class GroupUpdateDTO
+    public class GroupUpdateDTO : GroupCreateDTO
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public bool? DefaultRegister { get; set; } = false;
-        public IEnumerable<string> AllowedUseCases { get; set; }
-        public IEnumerable<string> DisallowedUseCases { get; set; }
     }
 }

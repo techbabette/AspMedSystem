@@ -45,13 +45,15 @@ namespace AspMedSystem.API.Controllers
         {
             dto.Id = id;
             _handler.HandleCommand(cmd, dto);
-            return NoContent();
+            return StatusCode(204);
         }
 
         // DELETE api/<GroupController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IGroupDeleteCommand cmd)
         {
+            _handler.HandleCommand(cmd, id);
+            return StatusCode(204);
         }
     }
 }

@@ -35,6 +35,8 @@ namespace AspMedSystem.API.Extensions
 
             services.AddTransient<GroupUpdateValidator>();
             services.AddTransient<IGroupUpdateCommand, EfGroupUpdateCommand>();
+
+            services.AddTransient<IGroupDeleteCommand, EfGroupDeleteCommand>();
         }
     }
 }

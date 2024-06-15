@@ -8,10 +8,10 @@ namespace AspMedSystem.Application.DTO
 {
     public class GroupUpdateDTO
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public bool? DefaultRegister { get; set; }
-        public IEnumerable<string>? AllowedUseCases { get; set; }
-        public IEnumerable<string>? DisallowedUseCases { get; set; }
+        public bool? DefaultRegister { get; set; } = false;
+        public IEnumerable<string> AllowedUseCases { get; set; }
+        public IEnumerable<string> DisallowedUseCases { get; set; }
     }
 }

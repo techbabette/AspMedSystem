@@ -29,7 +29,7 @@ namespace AspMedSystem.Implementation
 
                 foreach (IUseCase currentType in types)
                 {
-                    result.Add(currentType.Name);
+                    result.Add(currentType.Name.ToLower());
                 }
 
                 return result;

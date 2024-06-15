@@ -57,7 +57,8 @@ namespace AspMedSystem.Implementation
 
         private void HandleCrossCuttingConcerns(IUseCase useCase, object data)
         {
-            if (!_actor.AllowedUseCases.Contains(useCase.Name) && !AlwaysAllowed.Contains(useCase.Name))
+            if (!_actor.AllowedUseCases.Contains(useCase.Name, StringComparer.CurrentCultureIgnoreCase) 
+                && !AlwaysAllowed.Contains(useCase.Name, StringComparer.CurrentCultureIgnoreCase))
             {
                 throw new UnauthorizedAccessException();
             }

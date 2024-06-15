@@ -1,4 +1,5 @@
 ﻿using AspMedSystem.Application.DTO;
+using AspMedSystem.Application.Exceptions;
 using AspMedSystem.Application.UseCases.Commands.Groups;
 using AspMedSystem.DataAccess;
 using AspMedSystem.Domain;
@@ -31,21 +32,26 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Groups
         {
             _validator.ValidateAndThrow(data);
 
-            var groupToUpdate = Context.Groups.Where(group => group.Id == data.Id.Value)
+            var groupToUpdate = Context.Groups.Where(group => group.Id == data.Id)
                                                .Include(group => group.GroupPermissions)
                                                .FirstOrDefault();
+
+            if(groupToUpdate == null)
+            {
+                throw new EntityNotFoundException("Group", data.Id);
+            }
 
             var newPermissions = new List<GroupPermission>();
 
             newPermissions.AddRange(data.AllowedUseCases.Select(useCase => new GroupPermission
             {
-                Permission = useCase,
+                Permission = useCase.ToLower(),
                 Effect = Effect.Allow
             }));
 
             newPermissions.AddRange(data.DisallowedUseCases.Select(useCase => new GroupPermission
             {
-                Permission = useCase,
+                Permission = useCase.ToLower(),
                 Effect = Effect.Disallow
             }));
 

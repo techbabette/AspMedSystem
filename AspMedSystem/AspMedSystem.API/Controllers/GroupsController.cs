@@ -41,8 +41,11 @@ namespace AspMedSystem.API.Controllers
 
         // PUT api/<GroupController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] GroupUpdateDTO dto, [FromServices] IGroupUpdateCommand cmd)
         {
+            dto.Id = id;
+            _handler.HandleCommand(cmd, dto);
+            return NoContent();
         }
 
         // DELETE api/<GroupController>/5

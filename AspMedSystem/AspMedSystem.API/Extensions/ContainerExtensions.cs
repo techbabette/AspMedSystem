@@ -32,6 +32,9 @@ namespace AspMedSystem.API.Extensions
 
             services.AddTransient<IGroupSearchQuery, EfGroupSearchQuery>();
             services.AddTransient<IGroupSearchSingleQuery, EfGroupSearchSingleQuery>();
+
+            services.AddTransient<GroupUpdateValidator>();
+            services.AddTransient<IGroupUpdateCommand, EfGroupUpdateCommand>();
         }
     }
 }

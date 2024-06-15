@@ -10,7 +10,7 @@ namespace AspMedSystem.Application.DTO
     {
         public int? Id { get; set; }
         public string Name { get; set; }
-        public bool DefaultRegister { get; set; }
+        public bool? DefaultRegister { get; set; }
         public IEnumerable<string>? AllowedUseCases { get; set; }
         public IEnumerable<string>? DisallowedUseCases { get; set; }
     }

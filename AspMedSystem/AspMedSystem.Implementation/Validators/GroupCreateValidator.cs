@@ -27,15 +27,18 @@ namespace AspMedSystem.Implementation.Validators
                                 .WithMessage("Group name is in use.");
 
             RuleFor(groupDto => groupDto.DefaultRegister)
-                .Must(defaultRegister => defaultRegister == false || !_context.Groups.Any(group => group.DefaultRegister == true));
+                .Must(defaultRegister => defaultRegister == false || !_context.Groups.Any(group => group.DefaultRegister == true))
+                .WithMessage("Only one group can be set as default for newly registered users");
 
-            RuleFor(groupDto => groupDto.AllowedUseCases)
-                .Must(useCases => useCases.All(useCase => UseCaseInfo.AllUseCases.Contains(useCase, StringComparer.CurrentCultureIgnoreCase)))
-                .WithMessage("Use case does not exist");
+            RuleForEach(groupDto => groupDto.AllowedUseCases).Must((groupDto, useCase) =>
+            {
+                return UseCaseInfo.AllUseCases.Contains(useCase);
+            }).WithMessage("Use case does not exist");
 
-            RuleFor(groupDto => groupDto.DisallowedUseCases)
-                .Must(useCases => useCases.All(useCase => UseCaseInfo.AllUseCases.Contains(useCase, StringComparer.CurrentCultureIgnoreCase)))
-                .WithMessage("Use case does not exist");
+            RuleForEach(groupDto => groupDto.DisallowedUseCases).Must((groupDto, useCase) =>
+            {
+                return UseCaseInfo.AllUseCases.Contains(useCase);
+            }).WithMessage("Use case does not exist");
         }
     }
 }

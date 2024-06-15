@@ -1,5 +1,6 @@
 ﻿using AspMedSystem.Application.DTO;
 using AspMedSystem.Application.UseCases.Commands.Groups;
+using AspMedSystem.Application.UseCases.Queries.Groups;
 using AspMedSystem.Implementation;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,19 +10,19 @@ namespace AspMedSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GroupController : ControllerBase
+    public class GroupsController : ControllerBase
     {
         // GET: api/<GroupController>
         private UseCaseHandler _handler;
-        public GroupController(UseCaseHandler handler)
+        public GroupsController(UseCaseHandler handler)
         {
             _handler = handler;
         }
 
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] GroupSearchDTO dto, [FromServices] IGroupSearchQuery query)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_handler.HandleQuery(query, dto));
         }
 
         // GET api/<GroupController>/5

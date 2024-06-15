@@ -22,7 +22,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Auth
         {
             _validator = validator;
         }
-
+        private EfAuthRegisterCommand() { }
         public void Execute(AuthRegisterDTO data)
         {
             _validator.ValidateAndThrow(data);

@@ -1,5 +1,6 @@
 ﻿using AspMedSystem.Application.DTO;
 using AspMedSystem.Application.UseCases.Commands.Groups;
+using AspMedSystem.DataAccess;
 using AspMedSystem.DataAccess.Migrations;
 using AspMedSystem.Domain;
 using AspMedSystem.Implementation.Validators;
@@ -19,10 +20,11 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Groups
 
         private GroupCreateValidator _validator;
 
-        public EfGroupCreateCommand(GroupCreateValidator validator)
+        public EfGroupCreateCommand(MedSystemContext context, GroupCreateValidator validator) : base(context)
         {
             _validator = validator;
         }
+        private EfGroupCreateCommand() { }
 
         public void Execute(GroupCreateDTO data)
         {

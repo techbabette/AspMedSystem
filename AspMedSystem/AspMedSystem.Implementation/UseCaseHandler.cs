@@ -22,7 +22,7 @@ namespace AspMedSystem.Implementation
             AlwaysAllowed = new List<string>()
             {
                 "Data Initialization",
-                "Register"
+                "Register",
             };
         }
         public void HandleCommand<TData>(ICommand<TData> command, TData data)

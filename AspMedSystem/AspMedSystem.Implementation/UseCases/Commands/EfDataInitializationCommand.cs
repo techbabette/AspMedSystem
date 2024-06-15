@@ -78,6 +78,8 @@ namespace AspMedSystem.Implementation.UseCases.Commands
             Context.Groups.Add(Doctor);
             Context.Groups.Add(Admin);
 
+            Context.Users.Add(adminUser);
+
             Context.SaveChanges();
         }
     }

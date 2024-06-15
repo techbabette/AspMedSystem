@@ -1,7 +1,7 @@
 ﻿using AspMedSystem.API.Core;
 using AspMedSystem.API.DTO;
 using AspMedSystem.Application.DTO;
-using AspMedSystem.Application.UseCases.Commands;
+using AspMedSystem.Application.UseCases.Commands.Auth;
 using AspMedSystem.DataAccess;
 using AspMedSystem.Implementation;
 using Azure.Core;

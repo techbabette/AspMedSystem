@@ -1,5 +1,5 @@
 ﻿using AspMedSystem.Application.DTO;
-using AspMedSystem.Application.UseCases.Commands;
+using AspMedSystem.Application.UseCases.Commands.Auth;
 using AspMedSystem.DataAccess;
 using AspMedSystem.Domain;
 using AspMedSystem.Implementation.Validators;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AspMedSystem.Implementation.UseCases.Commands
+namespace AspMedSystem.Implementation.UseCases.Commands.Auth
 {
     public class EfAuthRegisterCommand : EfUseCase, IAuthRegisterCommand
     {

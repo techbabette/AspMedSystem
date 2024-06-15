@@ -1,9 +1,13 @@
 ﻿using AspMedSystem.API.Core;
 using AspMedSystem.Application;
 using AspMedSystem.Application.UseCases.Commands;
+using AspMedSystem.Application.UseCases.Commands.Auth;
+using AspMedSystem.Application.UseCases.Commands.Groups;
 using AspMedSystem.Implementation;
 using AspMedSystem.Implementation.Logging.UseCases;
 using AspMedSystem.Implementation.UseCases.Commands;
+using AspMedSystem.Implementation.UseCases.Commands.Auth;
+using AspMedSystem.Implementation.UseCases.Commands.Groups;
 using AspMedSystem.Implementation.Validators;
 
 namespace AspMedSystem.API.Extensions
@@ -20,6 +24,9 @@ namespace AspMedSystem.API.Extensions
 
             services.AddTransient<AuthRegisterValidator>();
             services.AddTransient<IAuthRegisterCommand,  EfAuthRegisterCommand>();
+
+            services.AddTransient<GroupCreateValidator>();
+            services.AddTransient<IGroupCreateCommand, EfGroupCreateCommand>();
         }
     }
 }

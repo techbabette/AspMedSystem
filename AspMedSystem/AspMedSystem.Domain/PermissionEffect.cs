@@ -9,6 +9,12 @@ namespace AspMedSystem.Domain
     public abstract class PermissionEffect : Entity
     {
         public string Permission { get; set; }
-        public bool Effect { get; set; }
+        public Effect Effect { get; set; }
+    }
+
+    public enum Effect
+    {
+        Disallow,
+        Allow
     }
 }

@@ -30,9 +30,9 @@ namespace AspMedSystem.API.Core
                 user.FirstName,
                 user.LastName,
                 user.Id,
-                UserAllows = user.UserPermissions.Where(permission => permission.Effect == true).Select(permission => permission.Permission),
-                GroupAllows = user.Group.GroupPermissions.Where(permission => permission.Effect == true).Select(permission => permission.Permission),
-                UserForbids = user.UserPermissions.Where(permission => permission.Effect == false).Select(permission => permission.Permission),
+                UserAllows = user.UserPermissions.Where(permission => permission.Effect == Effect.Allow).Select(permission => permission.Permission),
+                GroupAllows = user.Group.GroupPermissions.Where(permission => permission.Effect == Effect.Allow).Select(permission => permission.Permission),
+                UserForbids = user.UserPermissions.Where(permission => permission.Effect == Effect.Disallow).Select(permission => permission.Permission),
             })
             .FirstOrDefault();
 

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AspMedSystem.Application.UseCases.Commands
+namespace AspMedSystem.Application.UseCases.Commands.Groups
 {
-    public interface IAuthRegisterCommand : ICommand<AuthRegisterDTO>
+    public interface IGroupCreateCommand : ICommand<GroupCreateDTO>
     {
     }
 }

@@ -24,6 +24,11 @@ namespace AspMedSystem.Implementation.Validators
             {
                 return UseCaseInfo.AllUseCases.Contains(useCase, StringComparer.CurrentCultureIgnoreCase);
             }).WithMessage("Use case does not exist");
+
+            RuleForEach(dto => dto.DisallowedUseCases).Must((dto, useCase) =>
+            {
+                return !dto.AllowedUseCases.Contains(useCase, StringComparer.CurrentCultureIgnoreCase);
+            }).WithMessage("Disallowed use case cannot also be allowed");
         }
     }
 }

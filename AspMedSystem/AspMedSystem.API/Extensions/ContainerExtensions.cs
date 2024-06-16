@@ -76,6 +76,7 @@ namespace AspMedSystem.API.Extensions
 
             services.AddTransient<ReportCreateValidator>();
             services.AddTransient<IReportCreateCommand, EfReportCreateCommand>();
+            services.AddTransient<IReportDeleteCommand, EfReportDeleteCommand>();
         }
     }
 }

@@ -12,12 +12,12 @@ namespace AspMedSystem.API.Controllers
     [ApiController]
     public class ReportsController : ControllerBase
     {
-        private readonly UseCaseHandler hander;
+        private readonly UseCaseHandler handler;
 
         // GET: api/<ReportsController>
-        public ReportsController(UseCaseHandler hander)
+        public ReportsController(UseCaseHandler handler)
         {
-            this.hander = hander;
+            this.handler = handler;
         }
         [HttpGet]
         public IEnumerable<string> Get()
@@ -37,7 +37,7 @@ namespace AspMedSystem.API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] ReportCreateDTO dto, [FromServices] IReportCreateCommand command)
         {
-            hander.HandleCommand(command, dto);
+            handler.HandleCommand(command, dto);
             return StatusCode(201);
         }
 
@@ -51,8 +51,10 @@ namespace AspMedSystem.API.Controllers
         // DELETE api/<ReportsController>/5
         [Authorize]
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IReportDeleteCommand command)
         {
+            handler.HandleCommand(command, id);
+            return StatusCode(204);
         }
     }
 }

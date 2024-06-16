@@ -61,6 +61,8 @@ namespace AspMedSystem.Implementation.UseCases.Queries.ExaminationTerms
                 }
             }
 
+            query.OrderByDescending(term => term.Date);
+
             return query.AsPagedResponse(search, term => new ExaminationTermSearchResultDTO
             {
                 TermDate = term.Date,

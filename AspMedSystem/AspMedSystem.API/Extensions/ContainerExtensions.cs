@@ -65,6 +65,9 @@ namespace AspMedSystem.API.Extensions
 
             services.AddTransient<ExaminationTermCreateValidator>();
             services.AddTransient<IExaminationTermCreateCommand, EfExaminationTermCreateCommand>();
+            services.AddTransient<ExaminationTermUpdateValidator>();
+            services.AddTransient<IExaminationTermUpdateCommand, EfExaminationTermUpdateCommand>();
+            services.AddTransient<IExaminationTermDeleteCommand, EfExaminationTermDeleteCommand>();
 
             services.AddTransient<IExaminationPerformedCommand, EfExaminationPerformedCommand>();
 

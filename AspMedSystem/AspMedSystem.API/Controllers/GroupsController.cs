@@ -2,6 +2,7 @@
 using AspMedSystem.Application.UseCases.Commands.Groups;
 using AspMedSystem.Application.UseCases.Queries.Groups;
 using AspMedSystem.Implementation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,6 +20,7 @@ namespace AspMedSystem.API.Controllers
             _handler = handler;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Get([FromQuery] GroupSearchDTO dto, [FromServices] IGroupSearchQuery query)
         {
@@ -26,12 +28,14 @@ namespace AspMedSystem.API.Controllers
         }
 
         // GET api/<GroupController>/5
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IGroupSearchSingleQuery query)
         {
             return Ok(_handler.HandleQuery(query, id));
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Post([FromBody] GroupCreateDTO dto, [FromServices] IGroupCreateCommand cmd)
         {
@@ -40,6 +44,7 @@ namespace AspMedSystem.API.Controllers
         }
 
         // PUT api/<GroupController>/5
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] GroupUpdateDTO dto, [FromServices] IGroupUpdateCommand cmd)
         {
@@ -49,6 +54,7 @@ namespace AspMedSystem.API.Controllers
         }
 
         // DELETE api/<GroupController>/5
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id, [FromServices] IGroupDeleteCommand cmd)
         {

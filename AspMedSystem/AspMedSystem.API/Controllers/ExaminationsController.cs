@@ -39,12 +39,6 @@ namespace AspMedSystem.API.Controllers
         {
         }
 
-        // PUT api/<ExaminationsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
         [Authorize]
         public IActionResult MarkPerformed(int id, [FromServices] IExaminationPerformedCommand command)
         {

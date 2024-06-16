@@ -45,7 +45,7 @@ namespace AspMedSystem.DataAccess
                 {
                     if (entry.Entity is Entity e)
                     {
-                        e.CreatedAt = DateTime.UtcNow;
+                        e.CreatedAt = DateTime.Now;
                     }
 
                     if (entry.Entity is PermissionEffect permissionEffect)

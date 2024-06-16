@@ -19,7 +19,8 @@ namespace AspMedSystem.API.Controllers
         {
             this.handler = handler;
         }
-        // GET: api/<Examination_termsController>
+
+        [Authorize]
         [HttpGet]
         public IActionResult Get([FromQuery] ExaminationTermSearchDTO dto, [FromServices] IExaminationTermSearchQuery query)
         {
@@ -27,13 +28,13 @@ namespace AspMedSystem.API.Controllers
         }
 
         // GET api/<Examination_termsController>/5
+        [Authorize]
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<Examination_termsController>
         [Authorize]
         [HttpPost]
         public IActionResult Post([FromBody] ExaminationTermCreateDTO dto, [FromServices] IExaminationTermCreateCommand command)
@@ -42,16 +43,20 @@ namespace AspMedSystem.API.Controllers
             return StatusCode(201);
         }
 
-        // PUT api/<Examination_termsController>/5
+        [Authorize]
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] ExaminationTermUpdateDTO dto, [FromServices] IExaminationTermUpdateCommand command)
         {
+            dto.Id = id;
+            handler.HandleCommand(command, dto); ;
+            return StatusCode(204);
         }
 
-        // DELETE api/<Examination_termsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IExaminationTermDeleteCommand command)
         {
+            handler.HandleCommand(command, id);
+            return StatusCode(204);
         }
     }
 }

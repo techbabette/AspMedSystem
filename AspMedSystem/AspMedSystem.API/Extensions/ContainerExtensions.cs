@@ -57,6 +57,7 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IUserUpdateInformationOthersCommand, EfUserUpdateInformationOthersCommand>();
             services.AddTransient<UserUpdatePermissionsValidator>();
             services.AddTransient<IUserUpdatePermissionsCommand,  EfUserUpdatePermissionsCommand>();
+            services.AddTransient<IUserUpdateGroupCommand, EfUserUpdateGroupCommand>();
             services.AddTransient<IUserDeleteCommand, EfUserDeleteCommand>();
 
             services.AddTransient<ExaminationTermCreateValidator>();
@@ -69,7 +70,7 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IExaminationSearchQuery, EfExaminationSearchQuery>();
             services.AddTransient<IExaminationCreateCommand, EfExaminationCreateCommand>();
             services.AddTransient<IExaminationPerformedCommand, EfExaminationPerformedCommand>();
-
+            services.AddTransient<IExaminationDeleteCommand, EfExaminationDeleteCommand>();
         }
     }
 }

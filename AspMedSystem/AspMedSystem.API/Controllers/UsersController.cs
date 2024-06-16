@@ -80,6 +80,15 @@ namespace AspMedSystem.API.Controllers
             return StatusCode(204);
         }
 
+        [Authorize]
+        [HttpPut("{id}/group")]
+        public IActionResult Putgroup(int id, [FromBody] UserUpdateGroupDTO dto, [FromServices] IUserUpdateGroupCommand command)
+        {
+            dto.Id = id;
+            _handler.HandleCommand(command, dto);
+            return StatusCode(204);
+        }
+
         // DELETE api/<UsersController>/5
         [Authorize]
         [HttpDelete("{id}")]

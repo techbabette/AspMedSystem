@@ -55,8 +55,10 @@ namespace AspMedSystem.API.Controllers
         // DELETE api/<ExaminationsController>/5
         [Authorize]
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IExaminationDeleteCommand command)
         {
+            handler.HandleCommand(command, id);
+            return StatusCode(204);
         }
     }
 }

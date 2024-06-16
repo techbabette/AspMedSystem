@@ -5,6 +5,7 @@ using AspMedSystem.Application.UseCases.Commands.Examinations;
 using AspMedSystem.DataAccess;
 using AspMedSystem.Implementation.Validators;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,18 +31,21 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Examinations
 
         public void Execute(int data)
         {
-            var examinationToMark = Context.Examinations.Where(examination =>
-                                                         examination.Id == data &&
-                                                         examination.ExaminationTerm.ExaminerId == actor.Id)
+            var examinationToMark = Context.Examinations.Where(examination => examination.Id == data)
+                                                        .Include(examination => examination.ExaminationTerm)
                                                         .FirstOrDefault();
 
             if(examinationToMark == null)
             {
-                throw new ConflictException("Examination with given ID does not belong to examiner");
+                throw new EntityNotFoundException("Examination", data);
+            }
+
+            if(examinationToMark.ExaminationTerm.ExaminerId != actor.Id)
+            {
+                throw new ConflictException("Examination does not belong to you");
             }
 
             examinationToMark.Perfomed = true;
-
             Context.SaveChanges();
         }
     }

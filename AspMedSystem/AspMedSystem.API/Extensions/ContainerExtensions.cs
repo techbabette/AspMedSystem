@@ -5,6 +5,7 @@ using AspMedSystem.Application.UseCases.Commands.Auth;
 using AspMedSystem.Application.UseCases.Commands.Examinations;
 using AspMedSystem.Application.UseCases.Commands.ExaminationTerms;
 using AspMedSystem.Application.UseCases.Commands.Groups;
+using AspMedSystem.Application.UseCases.Commands.Reports;
 using AspMedSystem.Application.UseCases.Commands.Users;
 using AspMedSystem.Application.UseCases.Queries.Examinations;
 using AspMedSystem.Application.UseCases.Queries.ExaminationTerms;
@@ -17,6 +18,7 @@ using AspMedSystem.Implementation.UseCases.Commands.Auth;
 using AspMedSystem.Implementation.UseCases.Commands.Examinations;
 using AspMedSystem.Implementation.UseCases.Commands.ExaminationTerms;
 using AspMedSystem.Implementation.UseCases.Commands.Groups;
+using AspMedSystem.Implementation.UseCases.Commands.Reports;
 using AspMedSystem.Implementation.UseCases.Commands.Users;
 using AspMedSystem.Implementation.UseCases.Queries.Examinations;
 using AspMedSystem.Implementation.UseCases.Queries.ExaminationTerms;
@@ -71,6 +73,9 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IExaminationCreateCommand, EfExaminationCreateCommand>();
             services.AddTransient<IExaminationPerformedCommand, EfExaminationPerformedCommand>();
             services.AddTransient<IExaminationDeleteCommand, EfExaminationDeleteCommand>();
+
+            services.AddTransient<ReportCreateValidator>();
+            services.AddTransient<IReportCreateCommand, EfReportCreateCommand>();
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using AspMedSystem.Implementation;
+﻿using AspMedSystem.Application.DTO;
+using AspMedSystem.Application.UseCases.Commands.Reports;
+using AspMedSystem.Implementation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -30,18 +33,23 @@ namespace AspMedSystem.API.Controllers
         }
 
         // POST api/<ReportsController>
+        [Authorize]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] ReportCreateDTO dto, [FromServices] IReportCreateCommand command)
         {
+            hander.HandleCommand(command, dto);
+            return StatusCode(201);
         }
 
         // PUT api/<ReportsController>/5
+        [Authorize]
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
         // DELETE api/<ReportsController>/5
+        [Authorize]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

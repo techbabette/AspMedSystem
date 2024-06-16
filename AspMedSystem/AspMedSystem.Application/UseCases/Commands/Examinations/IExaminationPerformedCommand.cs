@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Application.UseCases.Commands.Examinations
 {
-    public interface IExaminationPerformedCommand : ICommand<ExaminationPerformedDTO>
+    public interface IExaminationPerformedCommand : ICommand<int>
     {
     }
 }

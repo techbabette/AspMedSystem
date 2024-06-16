@@ -15,30 +15,29 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Examinations
 {
     public class EfExaminationPerformedCommand : EfUseCase, IExaminationPerformedCommand
     {
-        private readonly ExaminationPerformedValidator validator;
         private readonly IApplicationActor actor;
 
         private EfExaminationPerformedCommand()
         {
         }
 
-        public EfExaminationPerformedCommand(MedSystemContext context, ExaminationPerformedValidator validator, IApplicationActor actor) : base(context)
+        public EfExaminationPerformedCommand(MedSystemContext context, IApplicationActor actor) : base(context)
         {
-            this.validator = validator;
             this.actor = actor;
         }
 
         public string Name => "mark examination as performed";
 
-        public void Execute(ExaminationPerformedDTO data)
+        public void Execute(int data)
         {
-            data.ExaminerId = actor.Id;
-            validator.ValidateAndThrow(data);
-            var examinationToMark = Context.Examinations.Find(data.ExaminationId);
+            var examinationToMark = Context.Examinations.Where(examination =>
+                                                         examination.Id == data &&
+                                                         examination.ExaminationTerm.ExaminerId == actor.Id)
+                                                        .FirstOrDefault();
 
             if(examinationToMark == null)
             {
-                throw new EntityNotFoundException("Examination", data.ExaminationId);
+                throw new ConflictException("Examination with given ID does not belong to examiner");
             }
 
             examinationToMark.Perfomed = true;

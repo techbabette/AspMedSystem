@@ -46,10 +46,9 @@ namespace AspMedSystem.API.Controllers
         }
 
         [Authorize]
-        public IActionResult MarkPerformed(int id, [FromBody] ExaminationPerformedDTO dto, [FromServices] IExaminationPerformedCommand command)
+        public IActionResult MarkPerformed(int id, [FromServices] IExaminationPerformedCommand command)
         {
-            dto.ExaminationId = id;
-            handler.HandleCommand(command, dto);
+            handler.HandleCommand(command, id);
             return StatusCode(204);
         }
 

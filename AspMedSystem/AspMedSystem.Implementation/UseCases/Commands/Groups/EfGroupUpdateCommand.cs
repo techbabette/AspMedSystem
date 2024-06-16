@@ -52,7 +52,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Groups
             Context.GroupPermissions.RemoveRange(groupToUpdate.GroupPermissions);
 
             groupToUpdate.Name = data.Name;
-            groupToUpdate.DefaultRegister = data.DefaultRegister.HasValue ? data.DefaultRegister.Value : false;
+            groupToUpdate.DefaultRegister = data.DefaultRegister;
             groupToUpdate.GroupPermissions = newPermissions;
 
             Context.SaveChanges();

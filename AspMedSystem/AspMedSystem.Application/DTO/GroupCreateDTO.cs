@@ -8,7 +8,7 @@ namespace AspMedSystem.Application.DTO
 {
     public class GroupCreateDTO
     {
-        public bool? DefaultRegister { get; set; } = false;
+        public bool DefaultRegister { get; set; } = false;
         public string Name { get; set; }
         public IEnumerable<string> AllowedUseCases { get; set; }
     }

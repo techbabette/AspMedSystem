@@ -43,7 +43,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Groups
             Group newGroup = new Group
             {
                 Name = data.Name,
-                DefaultRegister = data.DefaultRegister.HasValue ? data.DefaultRegister.Value : false,
+                DefaultRegister = data.DefaultRegister,
                 GroupPermissions = permissions
             };
 

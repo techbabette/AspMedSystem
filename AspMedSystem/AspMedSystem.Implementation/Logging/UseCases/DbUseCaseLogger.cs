@@ -20,6 +20,8 @@ namespace AspMedSystem.Implementation.Logging.UseCases
                 ActorEmail = log.UserEmail,
                 UseCaseName = log.UseCaseName
             });
+
+            _context.SaveChanges();
         }
     }
 }

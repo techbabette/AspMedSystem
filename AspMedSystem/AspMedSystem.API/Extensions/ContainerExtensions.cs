@@ -6,6 +6,7 @@ using AspMedSystem.Application.UseCases.Commands.Examinations;
 using AspMedSystem.Application.UseCases.Commands.ExaminationTerms;
 using AspMedSystem.Application.UseCases.Commands.Groups;
 using AspMedSystem.Application.UseCases.Commands.Users;
+using AspMedSystem.Application.UseCases.Queries.Examinations;
 using AspMedSystem.Application.UseCases.Queries.ExaminationTerms;
 using AspMedSystem.Application.UseCases.Queries.Groups;
 using AspMedSystem.Application.UseCases.Queries.Users;
@@ -17,6 +18,7 @@ using AspMedSystem.Implementation.UseCases.Commands.Examinations;
 using AspMedSystem.Implementation.UseCases.Commands.ExaminationTerms;
 using AspMedSystem.Implementation.UseCases.Commands.Groups;
 using AspMedSystem.Implementation.UseCases.Commands.Users;
+using AspMedSystem.Implementation.UseCases.Queries.Examinations;
 using AspMedSystem.Implementation.UseCases.Queries.ExaminationTerms;
 using AspMedSystem.Implementation.UseCases.Queries.Groups;
 using AspMedSystem.Implementation.UseCases.Queries.Users;
@@ -39,13 +41,10 @@ namespace AspMedSystem.API.Extensions
 
             services.AddTransient<GroupCreateValidator>();
             services.AddTransient<IGroupCreateCommand, EfGroupCreateCommand>();
-
             services.AddTransient<IGroupSearchQuery, EfGroupSearchQuery>();
             services.AddTransient<IGroupSearchSingleQuery, EfGroupSearchSingleQuery>();
-
             services.AddTransient<GroupUpdateValidator>();
             services.AddTransient<IGroupUpdateCommand, EfGroupUpdateCommand>();
-
             services.AddTransient<IGroupDeleteCommand, EfGroupDeleteCommand>();
 
             services.AddTransient<IUserSearchSingleInformationQuery, EfUserSearchSingleInformationQuery>();
@@ -53,14 +52,11 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IUserSearchSelfInformationQuery, EfUserSearchSelfInformationQuery>();
             services.AddTransient<IUserSearchSelfPermissionsQuery, EfUserSearchSelfPermissionsQuery>();
             services.AddTransient<IUserSearchQuery, EfUserSearchQuery>();
-
             services.AddTransient<UserUpdateInformationValidator>();
             services.AddTransient<IUserUpdateInformationSelfCommand, EfUserUpdateInformationSelfCommand>();
             services.AddTransient<IUserUpdateInformationOthersCommand, EfUserUpdateInformationOthersCommand>();
-
             services.AddTransient<UserUpdatePermissionsValidator>();
             services.AddTransient<IUserUpdatePermissionsCommand,  EfUserUpdatePermissionsCommand>();
-
             services.AddTransient<IUserDeleteCommand, EfUserDeleteCommand>();
 
             services.AddTransient<ExaminationTermCreateValidator>();
@@ -68,10 +64,12 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<ExaminationTermUpdateValidator>();
             services.AddTransient<IExaminationTermUpdateCommand, EfExaminationTermUpdateCommand>();
             services.AddTransient<IExaminationTermDeleteCommand, EfExaminationTermDeleteCommand>();
+            services.AddTransient<IExaminationTermSearchQuery, EfExaminationTermSearchQuery>();
 
+            services.AddTransient<IExaminationSearchQuery, EfExaminationSearchQuery>();
+            services.AddTransient<IExaminationCreateCommand, EfExaminationCreateCommand>();
             services.AddTransient<IExaminationPerformedCommand, EfExaminationPerformedCommand>();
 
-            services.AddTransient<IExaminationTermSearchQuery, EfExaminationTermSearchQuery>();
         }
     }
 }

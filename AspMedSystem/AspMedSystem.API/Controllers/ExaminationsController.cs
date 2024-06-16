@@ -1,5 +1,6 @@
 ﻿using AspMedSystem.Application.DTO;
 using AspMedSystem.Application.UseCases.Commands.Examinations;
+using AspMedSystem.Application.UseCases.Queries.Examinations;
 using AspMedSystem.Implementation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,13 +20,15 @@ namespace AspMedSystem.API.Controllers
             this.handler = handler;
         }
         // GET: api/<ExaminationsController>
+        [Authorize]
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] ExaminationSearchDTO search, [FromServices] IExaminationSearchQuery query)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(handler.HandleQuery(query, search));
         }
 
         // GET api/<ExaminationsController>/5
+        [Authorize]
         [HttpGet("{id}")]
         public string Get(int id)
         {
@@ -35,11 +38,14 @@ namespace AspMedSystem.API.Controllers
         // POST api/<ExaminationsController>
         [Authorize]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] ExaminationCreateDTO dto, [FromServices] IExaminationCreateCommand command)
         {
+            handler.HandleCommand(command, dto);
+            return StatusCode(201);
         }
 
         [Authorize]
+        [HttpPatch("{id}")]
         public IActionResult MarkPerformed(int id, [FromServices] IExaminationPerformedCommand command)
         {
             handler.HandleCommand(command, id);

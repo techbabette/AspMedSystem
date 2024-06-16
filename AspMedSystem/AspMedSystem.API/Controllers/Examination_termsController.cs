@@ -1,5 +1,6 @@
 ﻿using AspMedSystem.Application.DTO;
 using AspMedSystem.Application.UseCases.Commands.ExaminationTerms;
+using AspMedSystem.Application.UseCases.Queries.ExaminationTerms;
 using AspMedSystem.Implementation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +21,9 @@ namespace AspMedSystem.API.Controllers
         }
         // GET: api/<Examination_termsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] ExaminationTermSearchDTO dto, [FromServices] IExaminationTermSearchQuery query)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(handler.HandleQuery(query, dto));
         }
 
         // GET api/<Examination_termsController>/5

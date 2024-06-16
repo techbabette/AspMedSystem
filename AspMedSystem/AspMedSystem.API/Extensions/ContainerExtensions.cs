@@ -6,6 +6,7 @@ using AspMedSystem.Application.UseCases.Commands.Examinations;
 using AspMedSystem.Application.UseCases.Commands.ExaminationTerms;
 using AspMedSystem.Application.UseCases.Commands.Groups;
 using AspMedSystem.Application.UseCases.Commands.Users;
+using AspMedSystem.Application.UseCases.Queries.ExaminationTerms;
 using AspMedSystem.Application.UseCases.Queries.Groups;
 using AspMedSystem.Application.UseCases.Queries.Users;
 using AspMedSystem.Implementation;
@@ -16,6 +17,7 @@ using AspMedSystem.Implementation.UseCases.Commands.Examinations;
 using AspMedSystem.Implementation.UseCases.Commands.ExaminationTerms;
 using AspMedSystem.Implementation.UseCases.Commands.Groups;
 using AspMedSystem.Implementation.UseCases.Commands.Users;
+using AspMedSystem.Implementation.UseCases.Queries.ExaminationTerms;
 using AspMedSystem.Implementation.UseCases.Queries.Groups;
 using AspMedSystem.Implementation.UseCases.Queries.Users;
 using AspMedSystem.Implementation.Validators;
@@ -65,6 +67,8 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IExaminationTermCreateCommand, EfExaminationTermCreateCommand>();
 
             services.AddTransient<IExaminationPerformedCommand, EfExaminationPerformedCommand>();
+
+            services.AddTransient<IExaminationTermSearchQuery, EfExaminationTermSearchQuery>();
         }
     }
 }

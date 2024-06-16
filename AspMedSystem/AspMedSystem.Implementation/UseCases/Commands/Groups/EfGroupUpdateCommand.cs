@@ -45,7 +45,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Groups
 
             newPermissions.AddRange(data.AllowedUseCases.Select(useCase => new GroupPermission
             {
-                Permission = useCase.ToLower(),
+                Permission = useCase,
                 Effect = Effect.Allow
             }));
 

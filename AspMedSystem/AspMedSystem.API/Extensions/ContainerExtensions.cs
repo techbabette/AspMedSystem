@@ -51,6 +51,11 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<UserUpdateInformationValidator>();
             services.AddTransient<IUserUpdateInformationSelfCommand, EfUserUpdateInformationSelfCommand>();
             services.AddTransient<IUserUpdateInformationOthersCommand, EfUserUpdateInformationOthersCommand>();
+
+            services.AddTransient<UserUpdatePermissionsValidator>();
+            services.AddTransient<IUserUpdatePermissionsCommand,  EfUserUpdatePermissionsCommand>();
+
+            services.AddTransient<IUserDeleteCommand, EfUserDeleteCommand>();
         }
     }
 }

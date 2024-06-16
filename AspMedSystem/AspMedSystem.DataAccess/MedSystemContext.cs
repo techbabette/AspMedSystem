@@ -47,6 +47,19 @@ namespace AspMedSystem.DataAccess
                     {
                         e.CreatedAt = DateTime.UtcNow;
                     }
+
+                    if (entry.Entity is PermissionEffect permissionEffect)
+                    {
+                        permissionEffect.Permission = permissionEffect.Permission.ToLower();
+                    }
+                }
+
+                if (entry.State == EntityState.Modified)
+                {
+                    if (entry.Entity is PermissionEffect permissionEffect)
+                    {
+                        permissionEffect.Permission = permissionEffect.Permission.ToLower();
+                    }
                 }
             }
 

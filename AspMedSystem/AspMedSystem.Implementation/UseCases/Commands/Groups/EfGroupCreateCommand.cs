@@ -32,7 +32,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Groups
 
             var allowed = data.AllowedUseCases.Distinct().Select(useCase => new GroupPermission
             {
-                Permission = useCase.ToLower(),
+                Permission = useCase,
                 Effect = Effect.Allow
             });
 

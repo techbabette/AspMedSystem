@@ -24,7 +24,7 @@ namespace AspMedSystem.Implementation.Validators
                     term => term.ExaminerId == dto.ExaminerId && 
                     dto.DateTime > term.Date.AddMinutes(-15) && dto.DateTime < term.Date.AddMinutes(15)))
                 .WithMessage("Cannot publish a term that's within fifteen minutes of another term for the same examiner")
-                .WithName("DateTime");
+                .OverridePropertyName("DateTime");
 
             RuleFor(dto => dto.ExaminerId)
                 .Must(examinerId => Context.Users.Any(
@@ -36,7 +36,7 @@ namespace AspMedSystem.Implementation.Validators
                     )
                     ))
                 .WithMessage("Cannot publish a term for a user that cannot perform examinations")
-                .WithName("ExaminerId");
+                .OverridePropertyName("ExaminerId");
         }
     }
 }

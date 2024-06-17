@@ -18,7 +18,7 @@ namespace AspMedSystem.Implementation.Validators
 
             CascadeMode = CascadeMode.StopOnFirstFailure;
             RuleFor(groupDto => groupDto.Name).NotNull()
-                                .WithMessage("Category name is required.")
+                                .WithMessage("Group name is required.")
                                 .MinimumLength(3)
                                 .WithMessage("Minimum number of characters is 3.")
                                 .MaximumLength(50)

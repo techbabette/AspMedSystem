@@ -31,6 +31,7 @@ builder.Services.AddUseCases();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<IExceptionLogger, DbExceptionLogger>();
 
+builder.Services.AddAutoMapper(typeof(UseCaseInfo).Assembly);
 
 builder.Services.AddTransient<IApplicationActorProvider>(x =>
 {

@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AspMedSystem.Application.DTO;
 using System.Linq.Expressions;
+using AutoMapper;
 
 namespace AspMedSystem.Implementation.Extensions
 {
@@ -37,6 +38,28 @@ namespace AspMedSystem.Implementation.Extensions
             {
                 CurrentPage = page,
                 Data = query.Select(expression).ToList(),
+                PerPage = perPage,
+                TotalCount = totalCount,
+            };
+        }
+
+        public static PagedResponse<TResultDto> AsPagedResponse<TSearch, TResultDto>
+    (this IQueryable<TSearch> query, PagedSearch search, IMapper mapper)
+    where TResultDto : class
+        {
+            int totalCount = query.Count();
+
+            int perPage = search.PerPage.HasValue ? (int)Math.Abs((double)search.PerPage) : 10;
+            int page = search.Page.HasValue ? (int)Math.Abs((double)search.Page) : 1;
+
+            int skip = perPage * (page - 1);
+
+            query = query.Skip(skip).Take(perPage);
+
+            return new PagedResponse<TResultDto>
+            {
+                CurrentPage = page,
+                Data = mapper.ProjectTo<TResultDto>(query).ToList(),
                 PerPage = perPage,
                 TotalCount = totalCount,
             };

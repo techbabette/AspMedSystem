@@ -1,5 +1,6 @@
 ﻿using AspMedSystem.Application.DTO;
 using AspMedSystem.Application.UseCases.Commands.Reports;
+using AspMedSystem.Application.UseCases.Queries.Reports;
 using AspMedSystem.Implementation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,17 +20,18 @@ namespace AspMedSystem.API.Controllers
         {
             this.handler = handler;
         }
+        [Authorize]
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get([FromQuery] ReportSearchDTO dto, [FromServices] IReportSearchQuery query)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(handler.HandleQuery(query, dto));
         }
 
         // GET api/<ReportsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id, [FromServices] IReportSearchSingleQuery query)
         {
-            return "value";
+            return Ok(handler.HandleQuery(query, id));
         }
 
         // POST api/<ReportsController>

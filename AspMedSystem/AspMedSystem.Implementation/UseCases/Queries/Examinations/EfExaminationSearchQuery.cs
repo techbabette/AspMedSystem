@@ -46,7 +46,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Examinations
             if (!search.ExaminerKeyword.IsNullOrEmpty())
             {
                 query = query.Where(examination =>
-                (examination.ExaminationTerm.Examiner.FirstName + " " + examination.ExaminationTerm.Examiner).ToLower().Contains(search.ExaminerKeyword.ToLower()) ||
+                (examination.ExaminationTerm.Examiner.FirstName + " " + examination.ExaminationTerm.Examiner.LastName).ToLower().Contains(search.ExaminerKeyword.ToLower()) ||
                 examination.ExaminationTerm.Examiner.Email.ToLower().Contains(search.ExaminerKeyword.ToLower())
                 );
             }

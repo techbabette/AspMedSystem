@@ -10,6 +10,7 @@ using AspMedSystem.Application.UseCases.Commands.Users;
 using AspMedSystem.Application.UseCases.Queries.Examinations;
 using AspMedSystem.Application.UseCases.Queries.ExaminationTerms;
 using AspMedSystem.Application.UseCases.Queries.Groups;
+using AspMedSystem.Application.UseCases.Queries.Reports;
 using AspMedSystem.Application.UseCases.Queries.Users;
 using AspMedSystem.Implementation;
 using AspMedSystem.Implementation.Logging.UseCases;
@@ -23,6 +24,7 @@ using AspMedSystem.Implementation.UseCases.Commands.Users;
 using AspMedSystem.Implementation.UseCases.Queries.Examinations;
 using AspMedSystem.Implementation.UseCases.Queries.ExaminationTerms;
 using AspMedSystem.Implementation.UseCases.Queries.Groups;
+using AspMedSystem.Implementation.UseCases.Queries.Reports;
 using AspMedSystem.Implementation.UseCases.Queries.Users;
 using AspMedSystem.Implementation.Validators;
 
@@ -74,6 +76,8 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IExaminationPerformedCommand, EfExaminationPerformedCommand>();
             services.AddTransient<IExaminationDeleteCommand, EfExaminationDeleteCommand>();
 
+            services.AddTransient<IReportSearchQuery, EfReportSearchQuery>();
+            services.AddTransient<IReportSearchSingleQuery, EfReportSearchSingleQuery>();
             services.AddTransient<ReportCreateValidator>();
             services.AddTransient<IReportCreateCommand, EfReportCreateCommand>();
             services.AddTransient<IReportDeleteCommand, EfReportDeleteCommand>();

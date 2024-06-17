@@ -10,7 +10,28 @@ namespace AspMedSystem.Application.DTO
     {
         public int? ExaminerId { get; set; }
         public int? ExamineeId { get; set; }
+        public int? ExaminationId { get; set; }
+        public string? ExamineeKeyword { get; set; }
+        public string? ExaminerKeyword { get; set; }
         public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
+    }
+
+    public class ReportSearchResultDTO
+    {
+        public int Id { get; set; }
+        public int ExaminationId { get; set; }
+        public int ExaminerId { get; set; }
+        public int ExamineeId { get; set; }
+        public string ExamineeName { get; set; }
+        public string ExamineeEmail { get; set; }
+        public string ExaminerName { get; set; }
+        public string ExaminerEmail { get; set; }
+        public DateTime WrittenOn { get; set; }
+    }
+
+    public class ReportSearchResultSingleDTO : ReportSearchResultDTO
+    {
+        public string Text { get; set; }
     }
 }

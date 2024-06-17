@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Application.UseCases.Queries.Reports
 {
-    public interface IReportSearchQuery : IQuery<PagedResponse<ReportSearchResultDTO>, ReportSearchDTO>
+    public interface IReportSearchSingleQuery : IQuery<ReportSearchResultSingleDTO, int>
     {
     }
 }

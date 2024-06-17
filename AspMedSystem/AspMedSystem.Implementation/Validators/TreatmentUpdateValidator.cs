@@ -20,14 +20,14 @@ namespace AspMedSystem.Implementation.Validators
                                 .MinimumLength(3)
                                 .WithMessage("Minimum number of characters is 3.")
                                 .MaximumLength(50)
-                                .WithMessage("Maximum number of characters is 50.")
-                                .Must(name => !Context.Treatments.Any(group => group.Name == name))
-                                .WithMessage("Treatment name is in use.");
+                                .WithMessage("Maximum number of characters is 50.");
 
-            RuleFor(groupDto => groupDto)
-                .Must(groupDto => !Context.Groups.Any(group => group.Name == groupDto.Name && group.Id != groupDto.Id))
+            RuleFor(treatmentDto => treatmentDto)
+                .Must(treatmentDto => !Context.Treatments.Any(treatment => treatment.Name == treatmentDto.Name && treatment.Id != treatmentDto.Id))
                 .OverridePropertyName("Name")
-                .WithMessage("Group name is in use.");
+                .WithMessage("Treatment name is in use.");
+
+            RuleFor(treatmentDto => treatmentDto.Prescribable).NotNull();
         }
     }
 }

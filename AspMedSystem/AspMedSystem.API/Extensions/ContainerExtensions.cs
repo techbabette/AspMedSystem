@@ -6,12 +6,14 @@ using AspMedSystem.Application.UseCases.Commands.Examinations;
 using AspMedSystem.Application.UseCases.Commands.ExaminationTerms;
 using AspMedSystem.Application.UseCases.Commands.Groups;
 using AspMedSystem.Application.UseCases.Commands.Reports;
+using AspMedSystem.Application.UseCases.Commands.Treatments;
 using AspMedSystem.Application.UseCases.Commands.Users;
 using AspMedSystem.Application.UseCases.Queries.AuditLogs;
 using AspMedSystem.Application.UseCases.Queries.Examinations;
 using AspMedSystem.Application.UseCases.Queries.ExaminationTerms;
 using AspMedSystem.Application.UseCases.Queries.Groups;
 using AspMedSystem.Application.UseCases.Queries.Reports;
+using AspMedSystem.Application.UseCases.Queries.Treatments;
 using AspMedSystem.Application.UseCases.Queries.Users;
 using AspMedSystem.Implementation;
 using AspMedSystem.Implementation.Logging.UseCases;
@@ -21,12 +23,14 @@ using AspMedSystem.Implementation.UseCases.Commands.Examinations;
 using AspMedSystem.Implementation.UseCases.Commands.ExaminationTerms;
 using AspMedSystem.Implementation.UseCases.Commands.Groups;
 using AspMedSystem.Implementation.UseCases.Commands.Reports;
+using AspMedSystem.Implementation.UseCases.Commands.Treatments;
 using AspMedSystem.Implementation.UseCases.Commands.Users;
 using AspMedSystem.Implementation.UseCases.Queries.AuditLogs;
 using AspMedSystem.Implementation.UseCases.Queries.Examinations;
 using AspMedSystem.Implementation.UseCases.Queries.ExaminationTerms;
 using AspMedSystem.Implementation.UseCases.Queries.Groups;
 using AspMedSystem.Implementation.UseCases.Queries.Reports;
+using AspMedSystem.Implementation.UseCases.Queries.Treatments;
 using AspMedSystem.Implementation.UseCases.Queries.Users;
 using AspMedSystem.Implementation.Validators;
 
@@ -92,6 +96,14 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IReportCreateCommand, EfReportCreateCommand>();
             services.AddTransient<IReportDeleteCommand, EfReportDeleteCommand>();
             services.AddTransient<IReportUpdateCommand, EfReportUpdateCommand>();
+
+            services.AddTransient<ITreatmentSearchQuery, EfTreatmentSearchQuery>();
+            services.AddTransient<ITreatmentSearchSingleQuery, EfTreatmentSearchSingleQuery>();
+            services.AddTransient<TreatmentCreateValidator>();
+            services.AddTransient<ITreatmentCreateCommand, EfTreatmentCreateCommand>();
+            services.AddTransient<TreatmentUpdateValidator>();
+            services.AddTransient<ITreatmentUpdateCommand, EfTreatmendUpdateCommand>();
+            services.AddTransient<ITreatmentDeleteCommand, EfTreatmentDeleteCommand>();
         }
     }
 }

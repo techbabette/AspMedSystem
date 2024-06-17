@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Implementation.Validators
 {
-    internal class TreatmentCreateValidator : AbstractValidator<TreatmentCreateDTO>
+    public class TreatmentCreateValidator : AbstractValidator<TreatmentCreateDTO>
     {
         public TreatmentCreateValidator(MedSystemContext Context)
         {
@@ -23,6 +23,8 @@ namespace AspMedSystem.Implementation.Validators
                                 .WithMessage("Maximum number of characters is 50.")
                                 .Must(name => !Context.Treatments.Any(group => group.Name == name))
                                 .WithMessage("Treatment name is in use.");
+
+            RuleFor(treatmentDto => treatmentDto.Prescribable).NotNull();
         }
     }
 }

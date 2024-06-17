@@ -8,13 +8,14 @@ namespace AspMedSystem.Application.DTO
 {
     public class TreatmentSearchDTO : PagedSearch
     {
-        public string Name { get; set; }
-        public DateTime DateFrom { get; set; }
-        public DateTime DateTo { get; set; }
+        public string? Name { get; set; }
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
     }
 
     public class TreatmentSearchResultDTO
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime CreatedAt { get; set; }
     }

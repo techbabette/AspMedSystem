@@ -36,7 +36,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Users
 
             if (newGroup == null)
             {
-                throw new EntityNotFoundException("Group", data.Id);
+                throw new SubEntityNotFoundException("GroupId", data.Id);
             }
 
             userToUpdate.Group = newGroup;

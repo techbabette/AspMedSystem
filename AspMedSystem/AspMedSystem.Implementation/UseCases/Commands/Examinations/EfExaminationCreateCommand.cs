@@ -37,7 +37,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Examinations
 
             if (examinationTerm == null)
             {
-                throw new EntityNotFoundException("Examination term", data.ExaminationTermId);
+                throw new SubEntityNotFoundException("ExaminationTermId", data.ExaminationTermId);
             }
 
             if(examinationTerm.Date <  DateTime.Now)

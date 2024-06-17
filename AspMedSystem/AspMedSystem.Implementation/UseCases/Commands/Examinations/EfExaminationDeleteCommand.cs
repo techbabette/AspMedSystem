@@ -1,4 +1,5 @@
-﻿using AspMedSystem.Application.Exceptions;
+﻿using AspMedSystem.Application;
+using AspMedSystem.Application.Exceptions;
 using AspMedSystem.Application.UseCases.Commands.Examinations;
 using AspMedSystem.DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -12,12 +13,15 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Examinations
 {
     public class EfExaminationDeleteCommand : EfUseCase, IExaminationDeleteCommand
     {
+        private readonly IApplicationActor actor;
+
         private EfExaminationDeleteCommand()
         {
         }
 
-        public EfExaminationDeleteCommand(MedSystemContext context) : base(context)
+        public EfExaminationDeleteCommand(MedSystemContext context, IApplicationActor actor) : base(context)
         {
+            this.actor = actor;
         }
 
         public string Name => "Unschedule examination";
@@ -31,6 +35,11 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Examinations
             if(examinationToDelete == null)
             {
                 throw new EntityNotFoundException("Examination", data);
+            }
+
+            if (examinationToDelete.ExamineeId != actor.Id)
+            {
+                throw new ConflictException("Cannot unschedule another person's examination");
             }
 
             if (examinationToDelete.Perfomed)

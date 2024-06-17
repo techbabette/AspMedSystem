@@ -41,9 +41,18 @@ namespace AspMedSystem.API.Core
                     return;
                 }
 
+                if (exception is SubEntityNotFoundException excep)
+                {
+                    httpContext.Response.StatusCode = 422;
+                    var body = new { Property = excep.entity, Error = "Not found" };
+                    await httpContext.Response.WriteAsJsonAsync(new List<object>() { body });
+                    return;
+                }
+
                 if (exception is EntityNotFoundException)
                 {
                     httpContext.Response.StatusCode = 404;
+                    await httpContext.Response.WriteAsJsonAsync(exception.Message);
                     return;
                 }
 

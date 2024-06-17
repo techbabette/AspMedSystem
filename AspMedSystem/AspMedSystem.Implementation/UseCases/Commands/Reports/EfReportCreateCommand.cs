@@ -41,7 +41,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.Reports
 
             if(examinationUsedAsBasis == null)
             {
-                throw new EntityNotFoundException("Examination", data.ExaminationId);
+                throw new SubEntityNotFoundException("ExaminationId", data.ExaminationId);
             }
 
             if(examinationUsedAsBasis.ExaminationTerm.ExaminerId != actor.Id)

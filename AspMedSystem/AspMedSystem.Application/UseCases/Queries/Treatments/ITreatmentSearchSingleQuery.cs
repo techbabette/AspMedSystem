@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AspMedSystem.Application.UseCases.Commands.Treatments
+namespace AspMedSystem.Application.UseCases.Queries.Treatments
 {
-    public interface ITreatmentCreateCommand : ICommand<TreatmentCreateDTO>
+    public interface ITreatmentSearchSingleQuery : IQuery<TreatmentSearchResultSingleDTO, int>
     {
     }
 }

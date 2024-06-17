@@ -28,7 +28,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Examinations
 
         public ExaminationTermSearchSingleResultDTO Execute(int search)
         {
-            var examination = Context.Examinations.Where(examination => examination.Id == search)
+            var examination = Context.Examinations.Where(examination => examination.Id == search && examination.ExamineeId == actor.Id)
                               .Select(examination => new ExaminationTermSearchSingleResultDTO
                               {
                                   Id = examination.Id,
@@ -47,11 +47,6 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Examinations
             if (examination == null)
             {
                 throw new EntityNotFoundException("Examination", search);
-            }
-
-            if (examination.ExamineeId != actor.Id)
-            {
-                throw new ConflictException("This examination does not belong to you");
             }
 
             return examination;

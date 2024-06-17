@@ -91,7 +91,11 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IExaminationDeleteCommand, EfExaminationDeleteCommand>();
 
             services.AddTransient<IReportSearchQuery, EfReportSearchQuery>();
+            services.AddTransient<IReportSearchExaminerQuery, EfReportSearchExaminerQuery>();
+            services.AddTransient<IReportSearchExamineeQuery, EfReportSearchExamineeQuery>();
             services.AddTransient<IReportSearchSingleQuery, EfReportSearchSingleQuery>();
+            services.AddTransient<IReportSearchSingleExamineeQuery, EfReportSearchSingleExamineeQuery>();
+            services.AddTransient<IReportSearchSingleExaminerQuery, EfReportSearchSingleExaminerQuery>();
             services.AddTransient<ReportCreateValidator>();
             services.AddTransient<IReportCreateCommand, EfReportCreateCommand>();
             services.AddTransient<IReportDeleteCommand, EfReportDeleteCommand>();

@@ -1,5 +1,6 @@
 ﻿using AspMedSystem.Application.DTO;
 using AspMedSystem.Application.UseCases.Commands.Reports;
+using AspMedSystem.Application.UseCases.Queries.Examinations;
 using AspMedSystem.Application.UseCases.Queries.Reports;
 using AspMedSystem.Implementation;
 using Microsoft.AspNetCore.Authorization;
@@ -28,8 +29,37 @@ namespace AspMedSystem.API.Controllers
         }
 
         // GET api/<ReportsController>/5
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IReportSearchSingleQuery query)
+        {
+            return Ok(handler.HandleQuery(query, id));
+        }
+
+        [Authorize]
+        [HttpGet("me/examinee")]
+        public IActionResult GetAsExaminee([FromQuery] ReportSearchDTO search, [FromServices] IReportSearchExamineeQuery query)
+        {
+            return Ok(handler.HandleQuery(query, search));
+        }
+
+        [Authorize]
+        [HttpGet("me/examiner")]
+        public IActionResult GetAsExaminer([FromQuery] ReportSearchDTO search, [FromServices] IReportSearchExaminerQuery query)
+        {
+            return Ok(handler.HandleQuery(query, search));
+        }
+
+        [Authorize]
+        [HttpGet("me/examinee/{id}")]
+        public IActionResult GetOneAsExaminee(int id, [FromServices] IReportSearchSingleExamineeQuery query)
+        {
+            return Ok(handler.HandleQuery(query, id));
+        }
+
+        [Authorize]
+        [HttpGet("me/examiner/{id}")]
+        public IActionResult GetOneAsExaminer(int id, [FromServices] IReportSearchSingleExaminerQuery query)
         {
             return Ok(handler.HandleQuery(query, id));
         }

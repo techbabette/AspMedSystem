@@ -70,7 +70,6 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Reports
             }
 
             query.OrderByDescending(report => report.CreatedAt);
-
             return query.AsPagedResponse(search, report => new ReportSearchResultDTO
             {
                 Id = report.Id,

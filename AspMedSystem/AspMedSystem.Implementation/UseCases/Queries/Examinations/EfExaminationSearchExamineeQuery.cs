@@ -61,6 +61,8 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Examinations
                 query = query.Where(examination => examination.ExaminationTerm.Date <= search.DateTo.Value);
             }
 
+            query = query.OrderByDescending(examination => examination.ExaminationTerm.Date);
+
             return query.AsPagedResponse(search, examination => new ExaminationSearchResultDTO
             {
                 Id = examination.Id,

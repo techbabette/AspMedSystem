@@ -7,6 +7,7 @@ using AspMedSystem.Application.UseCases.Commands.ExaminationTerms;
 using AspMedSystem.Application.UseCases.Commands.Groups;
 using AspMedSystem.Application.UseCases.Commands.Reports;
 using AspMedSystem.Application.UseCases.Commands.Users;
+using AspMedSystem.Application.UseCases.Queries.AuditLogs;
 using AspMedSystem.Application.UseCases.Queries.Examinations;
 using AspMedSystem.Application.UseCases.Queries.ExaminationTerms;
 using AspMedSystem.Application.UseCases.Queries.Groups;
@@ -21,6 +22,7 @@ using AspMedSystem.Implementation.UseCases.Commands.ExaminationTerms;
 using AspMedSystem.Implementation.UseCases.Commands.Groups;
 using AspMedSystem.Implementation.UseCases.Commands.Reports;
 using AspMedSystem.Implementation.UseCases.Commands.Users;
+using AspMedSystem.Implementation.UseCases.Queries.AuditLogs;
 using AspMedSystem.Implementation.UseCases.Queries.Examinations;
 using AspMedSystem.Implementation.UseCases.Queries.ExaminationTerms;
 using AspMedSystem.Implementation.UseCases.Queries.Groups;
@@ -37,6 +39,9 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IUseCaseLogger, DbUseCaseLogger>();
             services.AddTransient<UseCaseHandler>();
             services.AddTransient<JwtTokenCreator>();
+
+            services.AddTransient<IAuditLogSearchQuery, EfAuditLogSearchQuery>();
+            services.AddTransient<IAuditLogSearchSingleQuery, EfAuditLogSearchSingleQuery>();
 
             services.AddTransient<IDataInitializationCommand, EfDataInitializationCommand>();
 

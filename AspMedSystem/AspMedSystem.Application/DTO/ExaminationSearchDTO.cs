@@ -28,5 +28,11 @@ namespace AspMedSystem.Application.DTO
         public string ExaminerEmail { get; set; }
         public DateTime Date { get; set; }
         public bool Performed { get; set; }
+        public int NumberOfReports { get; set; }
+    }
+
+    public class ExaminationTermSearchSingleResultDTO : ExaminationSearchResultDTO
+    {
+        public IEnumerable<int> Reports { get; set; }
     }
 }

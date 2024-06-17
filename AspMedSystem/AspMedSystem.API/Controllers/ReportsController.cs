@@ -46,8 +46,11 @@ namespace AspMedSystem.API.Controllers
         // PUT api/<ReportsController>/5
         [Authorize]
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] ReportUpdateDTO dto, [FromServices] IReportUpdateCommand command)
         {
+            dto.Id = id;
+            handler.HandleCommand(command, dto);
+            return StatusCode(201);
         }
 
         // DELETE api/<ReportsController>/5

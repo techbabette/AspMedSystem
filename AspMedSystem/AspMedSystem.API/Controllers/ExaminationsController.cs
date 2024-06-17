@@ -30,9 +30,37 @@ namespace AspMedSystem.API.Controllers
         // GET api/<ExaminationsController>/5
         [Authorize]
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id, [FromServices] IExaminationSearchSingleOthersQuery query)
         {
-            return "value";
+            return Ok(handler.HandleQuery(query, id)); ;
+        }
+
+        [Authorize]
+        [HttpGet("me/examinee")]
+        public IActionResult GetAsExaminee([FromQuery] ExaminationSearchDTO search, [FromServices] IExaminationSearchExamineeQuery query)
+        {
+            return Ok(handler.HandleQuery(query, search));
+        }
+
+        [Authorize]
+        [HttpGet("me/examiner")]
+        public IActionResult GetAsExaminer([FromQuery] ExaminationSearchDTO search, [FromServices] IExaminationSearchExaminerQuery query)
+        {
+            return Ok(handler.HandleQuery(query, search));
+        }
+
+        [Authorize]
+        [HttpGet("me/examinee/{id}")]
+        public IActionResult GetOneAsExaminee(int id, [FromServices] IExaminationSearchSingleExamineeQuery query)
+        {
+            return Ok(handler.HandleQuery(query, id));
+        }
+
+        [Authorize]
+        [HttpGet("me/examiner/{id}")]
+        public IActionResult GetOneAsExaminer(int id, [FromServices] IExaminationSearchSingleExaminerQuery query)
+        {
+            return Ok(handler.HandleQuery(query, id));
         }
 
         // POST api/<ExaminationsController>

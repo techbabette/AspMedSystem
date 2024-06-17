@@ -1,8 +1,8 @@
-﻿using AspMedSystem.Application.DTO;
+﻿using AspMedSystem.Application;
+using AspMedSystem.Application.DTO;
 using AspMedSystem.Application.UseCases.Queries.Examinations;
 using AspMedSystem.DataAccess;
 using AspMedSystem.Implementation.Extensions;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -12,30 +12,30 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Implementation.UseCases.Queries.Examinations
 {
-    public class EfExaminationSearchQuery : EfUseCase, IExaminationSearchQuery
+    public class EfExaminationSearchExamineeQuery : EfUseCase, IExaminationSearchExamineeQuery
     {
-        private EfExaminationSearchQuery()
+        private readonly IApplicationActor actor;
+
+        private EfExaminationSearchExamineeQuery()
         {
         }
 
-        public EfExaminationSearchQuery(MedSystemContext context) : base(context)
+        public EfExaminationSearchExamineeQuery(MedSystemContext context, IApplicationActor actor) : base(context)
         {
+            this.actor = actor;
         }
 
-        public string Name => "Search examinations";
+        public string Name => "Search examinations as examinee";
 
         public PagedResponse<ExaminationSearchResultDTO> Execute(ExaminationSearchDTO search)
         {
             var query = Context.Examinations.AsQueryable();
 
+            query = query.Where(examination => examination.ExamineeId == actor.Id);
+
             if (search.Performed.HasValue)
             {
                 query = query.Where(examination => examination.Perfomed.Equals(search.Performed.Value));
-            }
-
-            if (search.ExamineeId.HasValue)
-            {
-                query = query.Where(examination => examination.ExamineeId == search.ExamineeId.Value);
             }
 
             if (search.ExaminerId.HasValue)
@@ -51,14 +51,6 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Examinations
                 );
             }
 
-            if (!search.ExamineeKeyword.IsNullOrEmpty())
-            {
-                query = query.Where(examination =>
-                (examination.Examinee.FirstName + " " + examination.Examinee.LastName).ToLower().Contains(search.ExamineeKeyword.ToLower()) ||
-                examination.Examinee.Email.ToLower().Contains(search.ExamineeKeyword.ToLower())
-                );
-            }
-
             if (search.DateFrom.HasValue)
             {
                 query = query.Where(examination => examination.ExaminationTerm.Date >= search.DateFrom.Value);
@@ -69,7 +61,8 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Examinations
                 query = query.Where(examination => examination.ExaminationTerm.Date <= search.DateTo.Value);
             }
 
-            return query.AsPagedResponse(search, examination => new ExaminationSearchResultDTO {
+            return query.AsPagedResponse(search, examination => new ExaminationSearchResultDTO
+            {
                 Id = examination.Id,
                 Performed = examination.Perfomed,
                 ExamineeId = examination.ExamineeId,

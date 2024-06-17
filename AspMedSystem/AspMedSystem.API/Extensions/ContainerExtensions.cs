@@ -72,6 +72,11 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IExaminationTermSearchQuery, EfExaminationTermSearchQuery>();
 
             services.AddTransient<IExaminationSearchQuery, EfExaminationSearchQuery>();
+            services.AddTransient<IExaminationSearchSingleOthersQuery, EfExaminationSearchSingleOthersQuery>();
+            services.AddTransient<IExaminationSearchSingleExaminerQuery, EfExaminationSearchSingleExaminerQuery>();
+            services.AddTransient<IExaminationSearchSingleExamineeQuery, EfExaminationSearchSingleExamineeQuery>();
+            services.AddTransient<IExaminationSearchExaminerQuery, EfExaminationSearchExaminerQuery>();
+            services.AddTransient<IExaminationSearchExamineeQuery, EfExaminationSearchExamineeQuery>();
             services.AddTransient<IExaminationCreateCommand, EfExaminationCreateCommand>();
             services.AddTransient<IExaminationPerformedCommand, EfExaminationPerformedCommand>();
             services.AddTransient<IExaminationDeleteCommand, EfExaminationDeleteCommand>();

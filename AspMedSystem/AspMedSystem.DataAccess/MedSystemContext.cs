@@ -73,9 +73,7 @@ namespace AspMedSystem.DataAccess
         public DbSet<ExaminationTerm> ExaminationTerms { get; set; }
         public DbSet<Examination> Examinations { get; set; }
         public DbSet<Report> Reports { get; set; }
-        public DbSet<TreatmentCounterindication> TreatmentCounterindications { get; set;}
         public DbSet<UserTreatment> UserTreatments { get; set; }
-
         public DbSet<UseCaseLog> UseCaseLogs { get; set; }
 
         public DbSet<ErrorLog> ErrorLogs { get; set; }

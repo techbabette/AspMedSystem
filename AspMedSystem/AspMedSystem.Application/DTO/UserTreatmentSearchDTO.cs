@@ -32,7 +32,7 @@ namespace AspMedSystem.Application.DTO
         public string PrescriberEmail { get; set; }
         public string PrescriberName { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 
     public class UserTreatmentSearchSingleResult : UserTreatmentSearchResultDTO

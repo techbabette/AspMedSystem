@@ -22,6 +22,6 @@ namespace AspMedSystem.Application.DTO
 
     public class ExaminerSearchResultSingleDTO : ExaminerSearchResultDTO
     {
-        public IEnumerable<int> AvailableTerms { get; set; }
+        public IEnumerable<int> AvailableTermIds { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Application.UseCases.Queries.Examinations
 {
-    public interface IExaminationSearchSingleOthersQuery : IQuery<ExaminationTermSearchSingleResultDTO, int>
+    public interface IExaminationSearchSingleOthersQuery : IQuery<ExaminationSearchSingleResultDTO, int>
     {
     }
 }

@@ -27,10 +27,10 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Examinations
 
         public string Name => "Show your examinations as examiner";
 
-        public ExaminationTermSearchSingleResultDTO Execute(int search)
+        public ExaminationSearchSingleResultDTO Execute(int search)
         {
             var examination = Context.Examinations.Where(examination => examination.Id == search)
-                              .Select(examination => new ExaminationTermSearchSingleResultDTO
+                              .Select(examination => new ExaminationSearchSingleResultDTO
                               {
                                   Id = examination.Id,
                                   Performed = examination.Perfomed,
@@ -42,7 +42,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Examinations
                                   ExamineeName = examination.Examinee.FirstName + " " + examination.Examinee.LastName,
                                   ExaminerName = examination.ExaminationTerm.Examiner.FirstName + " " + examination.ExaminationTerm.Examiner.LastName,
                                   NumberOfReports = examination.Reports.Count,
-                                  Reports = examination.Reports.Select(report => report.Id),
+                                  ReportIds = examination.Reports.Select(report => report.Id),
                               }).FirstOrDefault();
 
             if (examination == null)

@@ -31,8 +31,8 @@ namespace AspMedSystem.Application.DTO
         public int NumberOfReports { get; set; }
     }
 
-    public class ExaminationTermSearchSingleResultDTO : ExaminationSearchResultDTO
+    public class ExaminationSearchSingleResultDTO : ExaminationSearchResultDTO
     {
-        public IEnumerable<int> Reports { get; set; }
+        public IEnumerable<int> ReportIds { get; set; }
     }
 }

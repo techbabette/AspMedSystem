@@ -39,7 +39,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Examiners
                         Name = user.FirstName + " " + user.LastName,
                         Email = user.Email,
                         AvailableTermsCount = user.ExaminationTerms.Where(term => !term.Examinations.Any() && term.Date > DateTime.Now).Count(),
-                        AvailableTerms = user.ExaminationTerms.Where(term => !term.Examinations.Any() && term.Date > DateTime.Now).Select(term => term.Id)
+                        AvailableTermIds = user.ExaminationTerms.Where(term => !term.Examinations.Any() && term.Date > DateTime.Now).Select(term => term.Id)
                     })
                     .FirstOrDefault();
 

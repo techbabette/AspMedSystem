@@ -53,11 +53,11 @@ namespace AspMedSystem.Implementation.UseCases.Queries.ExaminationTerms
             {
                 if (search.Available.Value)
                 {
-                    query = query.Where(term => !term.Examinations.Any());
+                    query = query.Where(term => !term.Examinations.Any() && term.Date > DateTime.Now);
                 }
                 else
                 {
-                    query = query.Where(term => term.Examinations.Any());
+                    query = query.Where(term => term.Examinations.Any() || term.Date < DateTime.Now);
                 }
             }
 
@@ -69,7 +69,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.ExaminationTerms
                 ExaminerEmail = term.Examiner.Email,
                 ExaminationTermId = term.Id,
                 ExaminerId = term.ExaminerId,
-                Available = !term.Examinations.Any()
+                Available = !term.Examinations.Any() && term.Date > DateTime.Now
             });
         }
     }

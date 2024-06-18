@@ -125,6 +125,11 @@ namespace AspMedSystem.API.Extensions
             services.AddTransient<IUserTreatmentDeleteCommand, EfUserTreatmentDeleteCommand>();
 
             services.AddTransient<IUserTreatmentSearchQuery, EfUserTreatmentSearchQuery>();
+            services.AddTransient<IUserTreatmentSearchPrescribeeQuery, EfUserTreatmentSearchPrescribeeQuery>();
+            services.AddTransient<IUserTreatmentSearchPrescriberQuery, EfUserTreatmentSearchPrescriberQuery>();
+
+            services.AddTransient<IUserTreatmentSearchSinglePrescribeeQuery, EfUserTreatmentSearchSinglePrescribeeQuery>();
+            services.AddTransient<IUserTreatmentSearchSinglePrescriberQuery, EfUserTreatmentSearchSinglePrescriberQuery>();
         }
     }
 }

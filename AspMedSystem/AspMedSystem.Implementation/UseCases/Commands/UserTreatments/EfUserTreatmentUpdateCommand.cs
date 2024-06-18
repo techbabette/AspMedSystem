@@ -45,7 +45,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.UserTreatments
 
             if (prescriptionToUpdate == null)
             {
-                throw new EntityNotFoundException("User treatment", data.Id);
+                throw new EntityNotFoundException("Prescription", data.Id);
             }
 
             if (prescriptionToUpdate.Report.Examination.ExaminationTerm.ExaminerId != actor.Id)

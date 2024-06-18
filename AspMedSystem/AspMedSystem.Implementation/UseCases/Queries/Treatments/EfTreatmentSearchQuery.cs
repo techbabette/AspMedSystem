@@ -47,6 +47,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Treatments
                 query = query.Where(treatment => treatment.Prescribable ==  search.Prescribable.Value);
             }
 
+            query = query.OrderByDescending(x => x.CreatedAt);
             return query.AsPagedResponse(search, treatment => new TreatmentSearchResultDTO
             {
                 Id = treatment.Id,

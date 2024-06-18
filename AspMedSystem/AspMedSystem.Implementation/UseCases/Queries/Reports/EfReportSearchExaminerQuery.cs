@@ -47,7 +47,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Reports
                 query = query.Where(report => report.CreatedAt <= search.DateTo.Value);
             }
 
-            query.OrderByDescending(report => report.CreatedAt);
+            query = query.OrderByDescending(report => report.CreatedAt);
             return query.AsPagedResponse(search, report => new ReportSearchResultDTO
             {
                 Id = report.Id,

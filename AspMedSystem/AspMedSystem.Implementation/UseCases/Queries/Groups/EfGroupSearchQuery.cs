@@ -39,7 +39,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Groups
                 query = query.Where(group => group.DefaultRegister.Equals(search.DefaultRegister.Value));
             }
 
-            query.OrderByDescending(group => group.CreatedAt);
+            query = query.OrderByDescending(group => group.CreatedAt);
             return query.AsPagedResponse(search, group => new GroupSearchResultDTO
             {
                 Id = group.Id,

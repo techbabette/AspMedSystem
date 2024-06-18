@@ -57,6 +57,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Examiners
                 }
             }
 
+            query = query.OrderByDescending(x => x.Id);
             return query.AsPagedResponse(search, user => new ExaminerSearchResultDTO
             {
                 Id = user.Id,

@@ -73,7 +73,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.UserTreatments
                 query = query.Where(ut => ut.StartDate <= search.DateTo.Value);
             }
 
-            query.OrderByDescending(ut => ut.StartDate);
+            query = query.OrderByDescending(ut => ut.StartDate);
             return query.AsPagedResponse(search, userTreatment => new UserTreatmentSearchResultDTO
             {
                 Id = userTreatment.Id,

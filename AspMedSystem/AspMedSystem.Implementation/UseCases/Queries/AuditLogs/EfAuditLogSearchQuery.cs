@@ -48,7 +48,6 @@ namespace AspMedSystem.Implementation.UseCases.Queries.AuditLogs
             }
 
             query = query.OrderByDescending(log => log.CreatedAt);
-
             return query.AsPagedResponse(search, log => new AuditLogSearchResultDTO{
                 Id = log.Id,
                 UserEmail = log.ActorEmail,

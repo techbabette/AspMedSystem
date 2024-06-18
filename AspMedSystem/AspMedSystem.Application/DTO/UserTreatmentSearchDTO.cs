@@ -21,6 +21,7 @@ namespace AspMedSystem.Application.DTO
 
     public class UserTreatmentSearchResultDTO
     {
+        public int Id { get; set; }
         public int ReportId { get; set; }
         public int TreatmentId { get; set; }
         public int PrescriberId { get; set; }

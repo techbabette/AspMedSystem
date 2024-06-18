@@ -28,6 +28,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.UserTreatments
             var prescription = Context.UserTreatments.Where(ut => ut.Id == search)
                                                      .Select(userTreatment => new UserTreatmentSearchSingleResult
                                                      {
+                                                         Id = userTreatment.Id,
                                                          StartDate = userTreatment.StartDate,
                                                          EndDate = userTreatment.EndDate,
                                                          ReportId = userTreatment.ReportId,

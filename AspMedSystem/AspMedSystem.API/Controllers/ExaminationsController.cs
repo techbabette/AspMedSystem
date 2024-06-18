@@ -73,7 +73,7 @@ namespace AspMedSystem.API.Controllers
         }
 
         [Authorize]
-        [HttpPatch("{id}")]
+        [HttpPost("{id}/performed")]
         public IActionResult MarkPerformed(int id, [FromServices] IExaminationPerformedCommand command)
         {
             handler.HandleCommand(command, id);

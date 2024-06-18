@@ -12,12 +12,12 @@ namespace AspMedSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class User_TreatmentsController : ControllerBase
+    public class PrescriptionsController : ControllerBase
     {
         private readonly UseCaseHandler handler;
 
         // GET: api/<User_TreatmentsController>
-        public User_TreatmentsController(UseCaseHandler handler)
+        public PrescriptionsController(UseCaseHandler handler)
         {
             this.handler = handler;
         }

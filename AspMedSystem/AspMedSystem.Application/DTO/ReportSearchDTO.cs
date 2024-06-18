@@ -27,11 +27,13 @@ namespace AspMedSystem.Application.DTO
         public string ExamineeEmail { get; set; }
         public string ExaminerName { get; set; }
         public string ExaminerEmail { get; set; }
+        public int NumberOfPrescriptions { get; set; }
         public DateTime WrittenOn { get; set; }
     }
 
     public class ReportSearchResultSingleDTO : ReportSearchResultDTO
     {
         public string Text { get; set; }
+        public IEnumerable<int> PrescriptionIds { get; set; }
     }
 }

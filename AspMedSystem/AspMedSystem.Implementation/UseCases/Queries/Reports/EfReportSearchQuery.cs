@@ -80,6 +80,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Reports
                 ExaminerEmail = report.Examination.ExaminationTerm.Examiner.Email,
                 ExamineeName = report.Examination.Examinee.FirstName + " " + report.Examination.Examinee.LastName,
                 ExaminerName = report.Examination.ExaminationTerm.Examiner.FirstName + " " + report.Examination.ExaminationTerm.Examiner.LastName,
+                NumberOfPrescriptions = report.UserTreatments.Count,
                 WrittenOn = report.CreatedAt
             });
         }

@@ -40,6 +40,8 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Reports
                                                   ExamineeName = report.Examination.Examinee.FirstName + " " + report.Examination.Examinee.LastName,
                                                   ExaminerName = report.Examination.ExaminationTerm.Examiner.FirstName + " " + report.Examination.ExaminationTerm.Examiner.LastName,
                                                   Text = report.Text,
+                                                  NumberOfPrescriptions = report.UserTreatments.Count,
+                                                  PrescriptionIds = report.UserTreatments.Select(tr => tr.Id),
                                                   WrittenOn = report.CreatedAt
                                               })
                                               .FirstOrDefault();

@@ -11,6 +11,7 @@ namespace AspMedSystem.Application.DTO
         public string? Name { get; set; }
         public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
+        public bool? Prescribable { get; set; }
     }
 
     public class TreatmentSearchResultDTO
@@ -18,6 +19,7 @@ namespace AspMedSystem.Application.DTO
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime CreatedAt { get; set; }
+        public bool Prescribable { get; set; }
     }
 
     public class TreatmentSearchResultSingleDTO : TreatmentSearchResultDTO

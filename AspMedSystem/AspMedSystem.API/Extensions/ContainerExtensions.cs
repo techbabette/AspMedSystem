@@ -8,6 +8,7 @@ using AspMedSystem.Application.UseCases.Commands.Groups;
 using AspMedSystem.Application.UseCases.Commands.Reports;
 using AspMedSystem.Application.UseCases.Commands.Treatments;
 using AspMedSystem.Application.UseCases.Commands.Users;
+using AspMedSystem.Application.UseCases.Commands.UserTreatments;
 using AspMedSystem.Application.UseCases.Queries.AuditLogs;
 using AspMedSystem.Application.UseCases.Queries.Examinations;
 using AspMedSystem.Application.UseCases.Queries.ExaminationTerms;
@@ -16,6 +17,7 @@ using AspMedSystem.Application.UseCases.Queries.Groups;
 using AspMedSystem.Application.UseCases.Queries.Reports;
 using AspMedSystem.Application.UseCases.Queries.Treatments;
 using AspMedSystem.Application.UseCases.Queries.Users;
+using AspMedSystem.Application.UseCases.Queries.UserTreatments;
 using AspMedSystem.Implementation;
 using AspMedSystem.Implementation.Logging.UseCases;
 using AspMedSystem.Implementation.UseCases.Commands;
@@ -26,6 +28,7 @@ using AspMedSystem.Implementation.UseCases.Commands.Groups;
 using AspMedSystem.Implementation.UseCases.Commands.Reports;
 using AspMedSystem.Implementation.UseCases.Commands.Treatments;
 using AspMedSystem.Implementation.UseCases.Commands.Users;
+using AspMedSystem.Implementation.UseCases.Commands.UserTreatments;
 using AspMedSystem.Implementation.UseCases.Queries.AuditLogs;
 using AspMedSystem.Implementation.UseCases.Queries.Examinations;
 using AspMedSystem.Implementation.UseCases.Queries.ExaminationTerms;
@@ -34,6 +37,7 @@ using AspMedSystem.Implementation.UseCases.Queries.Groups;
 using AspMedSystem.Implementation.UseCases.Queries.Reports;
 using AspMedSystem.Implementation.UseCases.Queries.Treatments;
 using AspMedSystem.Implementation.UseCases.Queries.Users;
+using AspMedSystem.Implementation.UseCases.Queries.UserTreatments;
 using AspMedSystem.Implementation.Validators;
 
 namespace AspMedSystem.API.Extensions
@@ -113,6 +117,14 @@ namespace AspMedSystem.API.Extensions
 
             services.AddTransient<IExaminerSearchQuery, EfExaminerSearchQuery>();
             services.AddTransient<IExaminerSearchSingleQuery, EfExaminerSearchSingleQuery>();
+
+            services.AddTransient<UserTreatmentCreateValidator>();
+            services.AddTransient<IUserTreatmentCreateCommand, EfUserTreatmentCreateCommand>();
+            services.AddTransient<UserTreatmentUpdateValidator>();
+            services.AddTransient<IUserTreatmentUpdateCommand, EfUserTreatmentUpdateCommand>();
+            services.AddTransient<IUserTreatmentDeleteCommand, EfUserTreatmentDeleteCommand>();
+
+            services.AddTransient<IUserTreatmentSearchQuery, EfUserTreatmentSearchQuery>();
         }
     }
 }

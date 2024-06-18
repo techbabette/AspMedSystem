@@ -31,7 +31,8 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Treatments
                                                   Id = treatment.Id,
                                                   Name = treatment.Name,
                                                   NumberOfTimesPrescribed = treatment.UserTreatments.Count,
-                                                  CreatedAt = treatment.CreatedAt
+                                                  CreatedAt = treatment.CreatedAt,
+                                                  Prescribable = treatment.Prescribable
                                               })
                                               .FirstOrDefault();
 

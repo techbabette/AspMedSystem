@@ -42,11 +42,17 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Treatments
                 query = query.Where(treatment => treatment.CreatedAt <= search.DateTo.Value);
             }
 
+            if (search.Prescribable.HasValue)
+            {
+                query = query.Where(treatment => treatment.Prescribable ==  search.Prescribable.Value);
+            }
+
             return query.AsPagedResponse(search, treatment => new TreatmentSearchResultDTO
             {
                 Id = treatment.Id,
                 Name = treatment.Name,
-                CreatedAt = treatment.CreatedAt
+                CreatedAt = treatment.CreatedAt,
+                Prescribable = treatment.Prescribable
             });
         }
     }

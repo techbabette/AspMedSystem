@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AspMedSystem.Application.DTO
 {
-    public class UserTreatmentSearchDTO
+    public class UserTreatmentSearchDTO : PagedSearch
     {
         public int? ReportId { get; set; }
         public int? TreatmentId { get; set; }

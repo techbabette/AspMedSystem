@@ -52,6 +52,7 @@ namespace AspMedSystem.API.Controllers
             return StatusCode(204);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id, [FromServices] IExaminationTermDeleteCommand command)
         {

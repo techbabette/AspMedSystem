@@ -65,6 +65,7 @@ namespace AspMedSystem.API.Controllers
         }
 
         // POST api/<User_TreatmentsController>
+        [Authorize]
         [HttpPost]
         public IActionResult Post([FromBody] UserTreatmentCreateDTO dto, [FromServices] IUserTreatmentCreateCommand command)
         {
@@ -73,6 +74,7 @@ namespace AspMedSystem.API.Controllers
         }
 
         // PUT api/<User_TreatmentsController>/5
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] UserTreatmentUpdateDTO dto, [FromServices] IUserTreatmentUpdateCommand command)
         {
@@ -82,6 +84,7 @@ namespace AspMedSystem.API.Controllers
         }
 
         // DELETE api/<User_TreatmentsController>/5
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id, [FromServices] IUserTreatmentDeleteCommand command)
         {

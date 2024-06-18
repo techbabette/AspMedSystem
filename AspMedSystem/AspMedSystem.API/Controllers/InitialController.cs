@@ -24,11 +24,5 @@ namespace AspMedSystem.API.Controllers
             _handler.HandleCommand(cmd, true);
             return Created();
         }
-
-        // DELETE api/<InitialController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

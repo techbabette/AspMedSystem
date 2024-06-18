@@ -17,7 +17,7 @@ namespace AspMedSystem.Application.DTO
 
     public class ExaminationTermSearchResultDTO
     {
-        public int ExaminationTermId { get; set; }
+        public int Id { get; set; }
         public int ExaminerId { get; set; }
         public string ExaminerName { get; set; }
         public string ExaminerEmail { get; set; }

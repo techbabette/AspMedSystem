@@ -23,17 +23,19 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Examiners
         }
 
         public string Name => "Search examiners";
-        private static string performExaminationPerm = "mark examination as performed";
+        private static string performExaminationPerm = UseCaseInfo.performExaminationPerm;
         public PagedResponse<ExaminerSearchResultDTO> Execute(ExaminerSearchDTO search)
         {
             var query = Context.Users.AsQueryable();
 
             query = query.Where(user =>
-            (
+            ((
                     user.UserPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Allow)
             ||
                     user.Group.GroupPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Allow)
-            ));
+            )
+            && !user.UserPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Disallow
+            )));
 
             if (!search.Keyword.IsNullOrEmpty())
             {

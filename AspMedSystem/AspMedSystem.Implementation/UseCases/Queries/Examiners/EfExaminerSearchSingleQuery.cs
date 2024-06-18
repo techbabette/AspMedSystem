@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace AspMedSystem.Implementation.UseCases.Queries.Examiners
 {
@@ -21,15 +22,17 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Examiners
         }
 
         public string Name => "Show examiner";
-        private static string performExaminationPerm = "mark examination as performed";
+        private static string performExaminationPerm = UseCaseInfo.performExaminationPerm;
         public ExaminerSearchResultSingleDTO Execute(int search)
         {
             var examiner = Context.Users.Where(user => user.Id == search &&
-                    (
-                    user.UserPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Allow)
+                    ((
+                            user.UserPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Allow)
                     ||
-                    user.Group.GroupPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Allow)
-                    ))
+                            user.Group.GroupPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Allow)
+                    )
+                    && !user.UserPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Disallow
+                    )))
                     .Select(user => new ExaminerSearchResultSingleDTO
                     {
                         Id = user.Id,

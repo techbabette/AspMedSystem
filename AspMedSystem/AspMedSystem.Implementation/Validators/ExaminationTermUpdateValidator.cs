@@ -14,7 +14,7 @@ namespace AspMedSystem.Implementation.Validators
         public ExaminationTermUpdateValidator(MedSystemContext Context)
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
-            var performExaminationPerm = "mark examination as performed";
+            var performExaminationPerm = UseCaseInfo.performExaminationPerm;
 
             RuleFor(dto => dto.DateTime)
                 .NotEmpty()
@@ -30,12 +30,13 @@ namespace AspMedSystem.Implementation.Validators
             RuleFor(dto => dto.ExaminerId)
                 .Must(examinerId => Context.Users.Any(
                     user => user.Id == examinerId &&
-                    (
-                    user.UserPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Allow)
+                    ((
+                            user.UserPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Allow)
                     ||
-                    user.Group.GroupPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Allow)
+                            user.Group.GroupPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Allow)
                     )
-                    ))
+                    && !user.UserPermissions.Any(perm => perm.Permission.Equals(performExaminationPerm) && perm.Effect == Domain.Effect.Disallow
+                    ))))
                 .WithMessage("Cannot publish a term for a user that cannot perform examinations")
                 .OverridePropertyName("ExaminerId");
         }

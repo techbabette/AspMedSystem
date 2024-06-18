@@ -21,7 +21,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.UserTreatments
         {
         }
 
-        public string Name => "Search user treatments";
+        public string Name => "Search prescriptions";
 
         public PagedResponse<UserTreatmentSearchResultDTO> Execute(UserTreatmentSearchDTO search)
         {

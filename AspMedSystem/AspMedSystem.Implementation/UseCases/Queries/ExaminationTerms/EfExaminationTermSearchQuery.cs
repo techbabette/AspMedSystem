@@ -61,13 +61,13 @@ namespace AspMedSystem.Implementation.UseCases.Queries.ExaminationTerms
                 }
             }
 
-            query.OrderByDescending(term => term.Date);
+            query.OrderBy(term => term.Date);
             return query.AsPagedResponse(search, term => new ExaminationTermSearchResultDTO
             {
                 TermDate = term.Date,
                 ExaminerName = term.Examiner.FirstName + " " + term.Examiner.LastName,
                 ExaminerEmail = term.Examiner.Email,
-                ExaminationTermId = term.Id,
+                Id = term.Id,
                 ExaminerId = term.ExaminerId,
                 Available = !term.Examinations.Any() && term.Date > DateTime.Now
             });

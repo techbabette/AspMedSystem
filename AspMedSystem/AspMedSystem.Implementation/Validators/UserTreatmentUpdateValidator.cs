@@ -17,7 +17,7 @@ namespace AspMedSystem.Implementation.Validators
 
             RuleFor(dto => dto.EndDate).NotEmpty();
 
-            RuleFor(dto => dto).Must(dto => dto.EndDate > dto.StartDate)
+            RuleFor(dto => dto).Must(dto => dto.EndDate >= dto.StartDate)
                 .OverridePropertyName("EndDate")
                 .WithMessage("Treatment cannot end before starting");
         }

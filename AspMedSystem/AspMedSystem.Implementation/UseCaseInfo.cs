@@ -36,6 +36,7 @@ namespace AspMedSystem.Implementation
             }
         }
 
+        //Everything below *could* be moved to a configuration file
         public static string performExaminationPerm => "mark examination as performed";
 
         public static IEnumerable<string> RegisteredDefaultUseCases
@@ -144,7 +145,7 @@ namespace AspMedSystem.Implementation
                         "show any examination",
                         "data initialization",
                         "prescribe user treatment",
-                        "stop treatment",
+                        "stop prescribed treatment",
                         "update prescription",
                         "delete user",
                         "update user group",
@@ -160,7 +161,8 @@ namespace AspMedSystem.Implementation
                         "schedule an examination",
                         "unschedule examination",
                         "mark examination as performed",
-                        "register"
+                        "register",
+                        "show report as pdf"
                 };
             }
         }
@@ -204,7 +206,7 @@ namespace AspMedSystem.Implementation
                         "show audit log",
                         "data initialization",
                         "prescribe user treatment",
-                        "stop treatment",
+                        "stop prescribed treatment",
                         "update prescription",
                         "delete user",
                         "update user group",
@@ -226,7 +228,8 @@ namespace AspMedSystem.Implementation
                         "schedule an examination",
                         "unschedule examination",
                         "mark examination as performed",
-                        "register"
+                        "register",
+                        "Show report as pdf"
                 };
             }
         }

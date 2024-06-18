@@ -24,7 +24,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.UserTreatments
             this.actor = actor;
         }
 
-        public string Name => "Stop treatment";
+        public string Name => "Stop prescribed treatment";
 
         public void Execute(int data)
         {

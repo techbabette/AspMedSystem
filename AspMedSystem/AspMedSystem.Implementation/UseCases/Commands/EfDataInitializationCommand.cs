@@ -174,6 +174,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands
             Context.Users.Add(theDoctorUser);
             Context.Users.Add(adminUser);
 
+            Context.Examinations.Add(examination2);
             Context.UserTreatments.Add(userTreatment1);
             Context.UserTreatments.Add(userTreatment2);
             Context.SaveChanges();

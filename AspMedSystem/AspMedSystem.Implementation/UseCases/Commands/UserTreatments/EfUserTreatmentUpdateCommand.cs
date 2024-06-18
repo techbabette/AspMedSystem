@@ -78,7 +78,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands.UserTreatments
             (
             (data.StartDate < ut.EndDate && data.StartDate >= ut.StartDate) ||
             (data.EndDate <= ut.EndDate && data.EndDate > ut.StartDate) ||
-            (data.StartDate <= ut.StartDate && data.EndDate >= ut.EndDate)
+            (data.StartDate <= ut.StartDate && data.EndDate >= ut.EndDate && ut.EndDate >= ut.StartDate)
             ))).Any();
 
             if (userHasTreatmentAlready)

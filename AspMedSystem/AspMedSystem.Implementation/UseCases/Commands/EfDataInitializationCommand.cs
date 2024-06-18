@@ -163,7 +163,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands
                 Report = report1,
                 Treatment = treatment2,
                 User = registeredUser,
-                Note = "Start a month from now",
+                Note = "Take the dose the instructions in the box suggest",
                 StartDate = DateTime.Now.AddDays(30),
                 EndDate = DateTime.Now.AddDays(60),
             };

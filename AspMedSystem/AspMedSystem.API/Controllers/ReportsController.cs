@@ -37,6 +37,14 @@ namespace AspMedSystem.API.Controllers
         }
 
         [Authorize]
+        [HttpGet("{id}/pdf")]
+        public IActionResult GetPdf(int id, [FromServices] IReportSearchPDFQuery query)
+        {
+
+            return File(handler.HandleQuery(query, id), "application/pdf", $"report{id}");
+        }
+
+        [Authorize]
         [HttpGet("me/examinee")]
         public IActionResult GetAsExaminee([FromQuery] ReportSearchDTO search, [FromServices] IReportSearchExamineeQuery query)
         {

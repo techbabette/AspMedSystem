@@ -33,6 +33,7 @@ namespace AspMedSystem.Implementation.UseCases.Queries.Users
                 || user.Group.Name.ToLower().Contains(search.Keyword.ToLower()));
             }
 
+            query = query.OrderByDescending(x => x.CreatedAt);
             return query.AsPagedResponse(search, user => new UserSearchResultDTO
             {
                 Id = user.Id,

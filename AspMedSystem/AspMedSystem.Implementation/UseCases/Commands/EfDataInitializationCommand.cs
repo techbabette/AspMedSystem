@@ -88,6 +88,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands
                 Password = BCrypt.Net.BCrypt.HashPassword("Admin123"),
                 FirstName = "User",
                 LastName = "Userkovic",
+                BirthDate = DateTime.Now.AddYears(-20)
             };
 
             User schedulerUser = new User()
@@ -97,6 +98,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands
                 Password = BCrypt.Net.BCrypt.HashPassword("Admin123"),
                 FirstName = "Scheduler",
                 LastName = "Schedulerikovic",
+                BirthDate = DateTime.Now.AddYears(-20)
             };
 
             User doctorUser = new User()
@@ -106,6 +108,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands
                 Password = BCrypt.Net.BCrypt.HashPassword("Admin123"),
                 FirstName = "Doctor",
                 LastName = "Doctorovic",
+                BirthDate = DateTime.Now.AddYears(-20)
             };
 
             User theDoctorUser = new User()
@@ -115,6 +118,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands
                 Password = BCrypt.Net.BCrypt.HashPassword("Admin123"),
                 FirstName = "Doctor",
                 LastName = "Doctorovic",
+                BirthDate = DateTime.Now.AddYears(-20)
             };
 
             User adminUser = new User()
@@ -124,6 +128,7 @@ namespace AspMedSystem.Implementation.UseCases.Commands
                 Password = BCrypt.Net.BCrypt.HashPassword("Admin123"),
                 FirstName = "Admin",
                 LastName = "Adminkovic",
+                BirthDate = DateTime.Now.AddYears(-20)
             };
 
             ExaminationTerm term1 = new ExaminationTerm { Date = DateTime.Now.AddDays(-20), Examiner = theDoctorUser };

@@ -32,7 +32,7 @@ namespace AspMedSystem.API.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IExaminationSearchSingleOthersQuery query)
         {
-            return Ok(handler.HandleQuery(query, id)); ;
+            return Ok(handler.HandleQuery(query, id));
         }
 
         [Authorize]

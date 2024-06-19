@@ -27,14 +27,6 @@ namespace AspMedSystem.API.Controllers
             return Ok(handler.HandleQuery(query, dto));
         }
 
-        // GET api/<Examination_termsController>/5
-        [Authorize]
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         [Authorize]
         [HttpPost]
         public IActionResult Post([FromBody] ExaminationTermCreateDTO dto, [FromServices] IExaminationTermCreateCommand command)
